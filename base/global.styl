@@ -1,0 +1,164 @@
+$SEP_BORDER = 1px solid #BBB unless $SEP_BORDER is defined
+
+@includeCore 'base/reset';
+
+.sepTop,.sepT,ul.cSepTop li
+	border-top:$SEP_BORDER
+
+.center{text-align:center}
+.centered{margin:0 auto}
+.clear{clear:both}
+.noclear{clear:none}
+br.clear{display:block;line-height:0;font-size:0;height:0}
+.pointer{cursor:pointer}
+.cursorWait,body.cursorWait *{cursor:wait !important}
+.bold{font-weight:bold}
+.italic{font-style:italic}
+.alignRight{text-align:right}
+.alignLeft{text-align:left}
+.alignJustify{text-align:justify}
+.faR{float:right;text-align:right}
+.context{ overflow:auto; overflow-x:hidden; position:relative }
+.nowrap,.w1{white-space:nowrap}
+html body .hidden{display:none}
+.dblock{display:block}
+
+.hiddenText
+	text-indent:-99999px;
+	if $IE_COMPATIBILITY
+		*text-indent:0
+		*font-size:0
+		*line-height:0
+		*overflow:hidden
+
+.floatR{float:right}
+.floatL{float:left}
+
+.row{ @extend .clear; display:table; table-layout:fixed; width:100%; }
+.row .col
+	display:table-cell
+	vertical-align:top /* Opera */
+	if $IE_COMPATIBILITY
+		*float:left /* IE <7 */
+
+.line.gut > * + *{margin-left:1em}
+
+
+
+
+.row.gut > * + *{
+	border-left:1em solid #fff /* must be color of parent background */
+	border-left-color:transparent
+	*border-left:0 if $IE_COMPATIBILITY
+}
+
+.aposR,.aposT,.aposTR,.aposB{position:absolute}
+.aposR,.aposTR,.aposB{right:0}
+.aposT,.aposTR{top:0}
+.aposT,.aposB{left:0}
+.aposB{bottom:0}
+.w1{width:1px}
+
+.smallinfo{font-size:0.88em}
+.biginfo{font-size:1.18em}
+.hugeinfo{font-size:1.4em}
+
+.sepTop,ul.cSepTop li{margin-top:8px;padding-top:8px;}
+.sepBot{margin-bottom:8px;padding-bottom:8px;}
+.sepTop,.sepT,ul.cSepTop li{border-top:$SEP_BORDER;}
+.sepL{border-left:$SEP_BORDER;}
+.sepR{border-right:$SEP_BORDER;}
+.sepBot,.sepB{border-bottom:$SEP_BORDER;}
+
+.clearfix:after,header:after,.header:after,.fixed:after,.variable:after,ul.mosaic:after,nav.top:after,nav.top ul:after{
+  content: "";
+  display: table;
+  clear: both; 
+}
+if $IE_COMPATIBILITY
+	.clearfix,header,.header,.fixed,.variable,ul.mosaic,nav.top,nav.top ul
+		zoom:1
+
+li a img{vertical-align:bottom}
+table img,img.icon,span.icon,.vaMiddle,.row .vaMiddle{vertical-align:middle}
+span.img,span.icon{display:block;display:inline-block}
+
+.iconWrap
+	position:relative
+	overflow:hidden
+	zoom:1 if $IE_COMPATIBILITY
+
+.iconWrap .icon{
+  position:absolute;
+  top:0;left:0;
+}
+.iconWrap div{
+  display: table-cell;
+  vertical-align: middle;
+}
+a.aicon{display:inline-block;text-decoration:none;}
+
+ul.mosaic{
+  float:left; width:100%; clear:both;
+  list-style: none;
+  margin:0;padding:0;
+  li{float:left;display:block;margin:0 5px 3px 2px;}
+  li > a{display:block; text-decoration: none;}
+  li img{display:block; margin:0 auto 0; border:0}
+}
+
+ul.inline,ul.nobullets,ul.simpleDouble,ul.clickable{
+  list-style:none;
+  margin:0;padding:0;
+}
+ul.inline{
+	@extend .dblock;
+}
+ul.inline li{ padding:2px 3px; display:inline; display:inline-block; }
+
+ul.spaced li{
+  padding:3px 0;
+}
+
+ul.compact{
+  margin:5px 0;
+  padding:0 0 0 20px;
+}
+ul.icons{
+  list-style:none;
+  margin:5px 0;
+  padding:0 0 0 16px;
+}
+ul.compact ul,ul.icons ul{margin:1px 0}
+
+ul.overflow-ellipsis li{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  display:block;
+}
+
+ul.simpleDouble ul{
+	list-style:disc;
+	padding:0 0 0 20px;
+  margin:0 0 5px;
+}
+
+.cMt10 > *{margin-top:10px}
+.cMt15 > *{margin-top:15px}
+.cMt10 > :first-child,.cMt15 > :first-child{margin-top:0}
+
+.cSepTop > :first-child{margin-top:0;padding-top:0;border-top:0;}
+
+
+$BCOLOR_VALID=#D3DBD3 unless $BCOLOR_VALID is defined
+$BCOLOR_INVALID=#CEBBBB unless $BCOLOR_INVALID is defined
+
+.valid{ background:$BCOLOR_VALID; }
+.invalid{ background:$BCOLOR_INVALID; }
+
+/* interactions */
+/*
+@ includeCore 'base/interactions';
+@ includeCore 'base/types';
+*/
