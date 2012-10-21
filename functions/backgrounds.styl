@@ -1,0 +1,12 @@
+
+bg(bg,forceResetIeFilter=false)
+	if bg
+		if length(bg)==1
+			background:bg
+			if forceResetIeFilter and $IE_COMPATIBILITY
+				@css{ filter:progid:DXImageTransform.Microsoft.gradient(enabled=false) }
+		else
+			bg-gradient-tb bg[0] bg[1]
+	//@if typeof($background)=='list'{ @include bg-gradient-tb(nth($background,1),nth($background,2)); }
+	//@else if $background{ background:$background; @if $forceResetIeFilter { @if $IE_COMPATIBILITY{; } } }
+

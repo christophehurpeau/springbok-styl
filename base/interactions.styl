@@ -1,10 +1,10 @@
-$JQueryUI=false unless $JQueryUI is defined
+/*$JQueryUI=false unless $JQueryUI is defined*/
 
 $InteractionDefaultBackgroundColor=$InteractionDefaultColor unless $InteractionDefaultBackgroundColor is defined
 $InteractionDefaultTextShadow=false unless $InteractionDefaultTextShadow is defined
 $InteractionDefaultBackgroundColor=false unless $InteractionDefaultBackgroundColor is defined
-$InteractionHoverBackgroundColor=$InteractionHoverColor unless $InteractionHoverColor is defined
-$InteractionCurrentBackgroundColor=$InteractionCurrentColor unless $InteractionCurrentColor is defined
+$InteractionHoverBackgroundColor=$InteractionHoverColor unless $InteractionHoverBackgroundColor is defined
+$InteractionCurrentBackgroundColor=$InteractionCurrentColor unless $InteractionCurrentBackgroundColor is defined
 
 a
 	color:$InteractionDefaultColor
@@ -28,38 +28,38 @@ ul.clickable.linksList{
 }
 
 
-if $JQueryUI
+/*if $JQueryUI
 	$__moreSelector='.ui-state-default,.ui-widget-content .ui-state-default,'
-{$__moreSelector}div.clickable,ul.clickable li{
+{$__moreSelector}*/div.clickable,ul.clickable li{
 	background:$InteractionDefaultBackgroundColor;
 	color:findBestFgColor($InteractionDefaultBackgroundColor);
 	cursor:pointer;
 }
-if $JQueryUI
+/*if $JQueryUI
 	$__moreSelector='.ui-state-default a,.ui-state-default a:link,.ui-state-default a:visited,'
-{$__moreSelector}div.clickable a,ul.clickable li a
+{$__moreSelector}*/div.clickable a,ul.clickable li a
 	color:findBestFgColor($InteractionDefaultBackgroundColor)
 	text-decoration:none
 
 if $InteractionHoverBackgroundColor
-	if $JQueryUI
+	/*if $JQueryUI
 		$__moreSelector='.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus,'
-	{$__moreSelector}div.clickable:hover,ul.clickable li:hover
+	{$__moreSelector}*/div.clickable:hover,ul.clickable li:hover
 		background:$InteractionHoverBackgroundColor
 		color:findBestFgColor($InteractionHoverBackgroundColor)
-	if $JQueryUI
+	/*if $JQueryUI
 		$__moreSelector='.ui-state-hover a, .ui-state-hover a:hover,ui-state-focus a,ui-state-focus a:hover,'
-	{$__moreSelector}div.clickable:hover a,ul.clickable li:hover a
+	{$__moreSelector}*/div.clickable:hover a,ul.clickable li:hover a
 		color:findBestFgColor($InteractionHoverBackgroundColor)
 
 
 if $InteractionCurrentBackgroundColor
-	if $JQueryUI
+	/*if $JQueryUI
 		$__moreSelector='.ui-state-active, .ui-widget-content .ui-state-active,'
-	{$__moreSelector}ul.clickable li.current
+	{$__moreSelector}*/ul.clickable li.current
 		background:$InteractionCurrentBackgroundColor
 		color:findBestFgColor($InteractionCurrentBackgroundColor)
-	if $JQueryUI
+	/*if $JQueryUI
 		$__moreSelector='.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited,'
-	{$__moreSelector}ul.clickable li.current,ul.clickable li.current a
+	{$__moreSelector}*/ul.clickable li.current a
 		color:findBestFgColor($InteractionCurrentBackgroundColor)

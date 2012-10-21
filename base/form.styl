@@ -1,0 +1,235 @@
+$FormLegendColor=false unless $FormLegendColor is defined
+$FormSmallLabelWidth=60px unless $FormSmallLabelWidth is defined
+$FormMediumLabelWidth=90px unless $FormMediumLabelWidth is defined
+$FormLabelWidth=180px unless $FormLabelWidth is defined
+$FormLargeLabelWidth=280px unless $FormLargeLabelWidth is defined
+
+form
+	/* Corrects margin displayed oddly in IE 6/7. */
+	margin 0
+
+fieldset
+	bg $FormFieldsetBackground
+	border $FormFieldsetBorder
+	padding 10px
+
+legend
+	background $FormLegendBackground
+	border $FormLegendBorder
+	color $FormLegendColor if $FormLegendColor
+	font-weight bold
+	padding 2px 6px
+	*margin-left: -7px /* Corrects alignment displayed oddly in IE 6/7. */
+
+button,input,select,textarea
+	margin: 0 /* Addresses margins set differently in IE 6/7, Firefox 3+, Safari 5, and Chrome. */
+	vertical-align: baseline
+	*vertical-align: middle /* Improves appearance and consistency in all browsers */
+
+/* Re-set default cursor for disabled elements. */
+button[disabled],input[disabled]
+	cursor:default;
+
+
+
+
+
+div.input label,div.textarea label,div.checkboxes > label,form .radio .title
+	display:block
+	display:inline-block
+	width:$FormLabelWidth
+	padding:1px 3px
+	vertical-align:top
+
+div.input.select label,div.radio label
+	vertical-align:middle
+.largeLabel div.input label,.largeLabel .radio .title
+	width:$FormLargeLabelWidth
+
+.smallLabel div.input label,.smallLabel .radio .title,.smallRadioLabel div.input .radioLabel
+	width:$FormSmallLabelWidth
+
+.mediumLabel div.input label,.mediumLabel .radio .title,.mediumRadioLabel div.input .radioLabel
+	width:$FormMediumLabelWidth
+
+.labelWp100 div.input label, .labelWp100 div.textarea label
+	display:block
+	width:auto
+
+
+@includeCore 'base/buttons';
+
+input[type=submit],button
+	margin:5px 0 3px 1px
+
+input[type=radio],input[type=checkbox]
+	vertical-align:bottom
+	margin:0 3px
+	padding: 0 /* Corrects excess space around these inputs in IE8/9 */
+	*width: 13px
+	*height: 13px /* Corrects excess space around these inputs in IE7 */
+
+input.wp100,div input.wp100,form textarea
+	box-sizing: border-box
+	width:100%
+
+
+div input,div textarea
+	background:#EDEDED
+	color:#4C4C4C
+	border:1px solid #ccc
+	/* @include boxShadow(#eee,10px); */
+	transition:all .3s
+
+div input:hover, div textarea:hover{background-color:#FAFAFA}
+div input:focus, div textarea:focus{background-color:#FFF}
+
+div .input{ margin:1px 0; position:relative }
+div .textarea{ margin: 2px 0 }
+
+div .input.text input,div .textarea textarea{border:1px solid #B4B4B4; margin:0;}
+div .input.text input[disabled="disabled"],form .text input[readonly="readonly"]{color:#333; background-color:#D5D5D5;}
+
+input.default,.input.text input.default{color:#777;font-style:italic}
+
+form .checkbox{padding:2px 0}
+form div.input.checkbox label{width:auto}
+form .radio .yesDiv{padding-left:20px}
+
+form div.center,form div.italic{margin:7px 0 7px}
+
+body form div.submit{margin:7px 0 0}
+form div.submit input{margin:0}
+
+/* TABLE */
+
+table.form{width:100%;border-spacing:5px;}
+.form td.one input,.form td.one select{width:99%}
+.form td.submit{width:80px; margin:0}
+.form td.submit input,.form td input.submit{width:100%; padding:1px 0; margin:0;}
+tr.form td{border:1px solid #C4C4C4; padding:0}
+
+/* */
+
+.form input{
+	border:0;
+	margin:0;padding:2px 0;
+	width:100%;
+}
+.form select
+	border:0
+	margin:0;padding:2px 0;
+	width:100%;
+	
+	appearance normal
+	
+	bg-gradient-tb #555555,#444444
+	border-radius 2px
+	color:#EEE;
+	text-shadow:#999 0 0 1px;
+	
+	outline:0;
+
+.form select:focus{
+	bg-gradient-tb #666666,#555555
+	outline:0;border:0;
+}
+.form select option{
+	outline:0;
+	background:#666;
+	text-shadow:none;
+}
+.form select option:focus,.form select option:hover{
+	background:#777;
+}
+
+.checkboxes.mosaic{
+	float:left; width:100%; clear:both;
+	.checkbox,label{float:left;display:block;margin:0 5px 3px 2px;}
+}
+
+input.bigInput, .big .text input{
+	font-size:1.1em;
+	height:28px; line-height:28px;
+	background:#F5F5F5;color:#4C4C4C;
+	border:1px solid #ccc;
+	box-shadow:0 0 10px #eee inset;
+	border-radius:6px;
+}
+.w300{
+	input{ width:280px; }
+	fieldset input{width:278px; } /* -2px si fieldset*/
+	div.text label{width:270px}
+}
+.w400{
+	input{ width:380px; }
+	fieldset input{ width:378px; } /* -2px si fieldset*/
+	div.text label{width:370px}
+}
+.w480{
+	input{ width:460px; }
+	fieldset input{ width:458px; } /* -2px si fieldset*/
+	div.text label{width:450px}
+}
+.w300 input.submit,.w400 input.submit,.w480 input.submit{margin:5px 0}
+
+
+.big .text label{
+	height:30px; line-height:30px;
+	font-size:1.2em;
+}
+input.bigInput:hover, .big .text input:hover{background:#FAFAFA}
+input.bigInput:focus, .big .text input:focus{background:#FFF}
+input.submit.big, .big input.submit{
+	padding:4px 15px;
+}
+
+form input.submitIcon{
+	appearance:normal;
+	border:0;
+	margin:2px 0 1px 1px;
+	vertical-align: middle;
+}
+
+/* TODO : http://www.webstuffshare.com/2012/02/styling-form-elements-like-google-chromes-preferences/ */
+
+
+/* VALIDATION */
+form .required {
+	font-weight: bold;
+}
+form .required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+
+form input.invalid, form textarea.invalid,
+form div.input.text input.invalid,
+form div.text.invalid input,
+form div.text.invalid textarea,
+form input.ht5ifv-show-invalid, form textarea.ht5ifv-show-invalid,
+form div.input input.ht5ifv-show-invalid, form div.input textarea.ht5ifv-show-invalid{
+	border: 1px solid #F33;
+	color : #000;
+}
+form input.ht5ifv-show-valid, form textarea.ht5ifv-show-valid,
+form .input.text input.ht5ifv-show-valid,
+form div.input input.ht5ifv-show-valid, form div.input textarea.ht5ifv-show-valid{
+	border: 1px solid #2EB82E
+}
+.ht5ifv-show-required{background-color: #f1cccc}
+.ht5ifv-show-min{background-color: #FF9999}
+.ht5ifv-show-max{background-color: #FF99CC}
+.ht5ifv-show-pattern{background-color: #FFCCFF}
+.ht5ifv-show-type{background-color: #FFCC99}
+
+.validation-advice
+	margin 5px 0;
+	padding 5px;
+	background-color #F33;
+	color #FFF;
+	font-weight bold;
+
+.validation-advice p
+	margin:0

@@ -1,0 +1,80 @@
+$_BUTTON_OVERRIDE = false unless $_BUTTON_OVERRIDE is defined
+$BasicButtons = false unless $BasicButtons is defined
+$ButtonBoxShadow = 0 1px 1px rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.4) unless $ButtonBoxShadow is defined
+$ButtonTextShadow = #999 unless $ButtonTextShadow is defined
+$ButtonFocusColor = #FFF unless $ButtonFocusColor is defined
+$ButtonTextShadow = #555 unless $ButtonTextShadow is defined
+
+$ButtonBackground = #555555 #444444 unless $ButtonBackground is defined
+$ButtonHoverBackground = #666666 #555555 unless $ButtonHoverBackground is defined
+$ButtonFocusBackground = #555555 #777777 unless $ButtonFocusBackground is defined
+$ButtonColor = #EEE unless $ButtonColor is defined
+$ButtonBorder = 1px solid #111 unless $ButtonBorder is defined
+$ButtonHoverColor = #FFF unless $ButtonHoverColor is defined
+$ButtonHoverBorder = 1px solid #333333 unless $ButtonHoverBorder is defined
+
+if $BasicButtons
+	$ButtonBackground = #FFF #F3F3F3
+	$ButtonHoverBackground = #F3F3F3 #E5E5E5
+	$ButtonFocusBackground = #E5E5E5 #FFF
+	$ButtonColor = #222
+	$ButtonBorder = 1px solid #CCC
+	$ButtonHoverColor = #000
+	$ButtonHoverBorder = 1px solid #AAA
+	$ButtonBoxShadow = false
+
+
+
+if $_BUTTON_OVERRIDE
+	html{
+		input.submit,button,.button{
+			bg($ButtonBackground);
+			border:$ButtonBorder;
+			color:$ButtonColor;
+		}
+		input.submit:hover,button:hover,.button:hover{
+			bg($ButtonHoverBackground);
+			@if $ButtonHoverBorder{ border:$ButtonHoverBorder; }
+		}
+		body input.submit:focus,body button:focus,body .button:focus{
+			bg($ButtonFocusBackground);
+		}
+	}
+else
+	input.submit,button,.button{
+		bg $ButtonBackground
+		border-radius 3px
+		box-shadow $ButtonBoxShadow if $ButtonBoxShadow
+		border $ButtonBorder
+		color $ButtonColor
+		text-shadow $ButtonTextShadow
+		padding 2px 8px
+		cursor pointer
+		transition all .4s
+		box-sizing border-box
+		text-decoration none
+	}
+	input.submit:hover,button:hover,.button:hover{
+		bg $ButtonHoverBackground
+		border $ButtonHoverBorder if $ButtonHoverBorder
+		color $ButtonHoverColor if $ButtonHoverColor
+	}
+	body input.submit:focus,body button:focus,body .button:focus{
+		bg $ButtonFocusBackground
+		color $ButtonFocusColor
+		outline 0
+		text-shadow $ButtonTextShadow
+	}
+	a.button,a.button:hover{text-decoration:none;display:inline-block;}
+	input.submit.bblock,button.bblock,.button.bblock,a.button.bblock,a.button.bblock:hover{display:block;}
+	
+	button::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner{border: 0}
+	button.big, .button.big{
+		padding:5px 16px;
+	}
+
+/* IE */
+/*input.submit,button{
+	position:relative;
+	z-index: 0;
+}*/

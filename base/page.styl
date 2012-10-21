@@ -1,0 +1,381 @@
+@includeCore 'base/html5';
+
+
+$PAGE_100 = true unless $PAGE_100 is defined
+$PAGE_FIXED = false unless $PAGE_FIXED is defined
+
+$HeaderBackground = false unless $HeaderBackground is defined
+$HeaderColor = false unless $HeaderColor is defined
+$HeaderBorderRadius = false unless $HeaderBorderRadius is defined
+$HeaderPadding = false unless $HeaderPadding is defined
+
+
+$ContainerWidth = true unless $ContainerWidth is defined
+$ContainerBackground = false unless $ContainerBackground is defined
+$ContainerShadow = false unless $ContainerShadow is defined
+
+$PageWidth = false unless $PageWidth is defined
+$PageBackground = false unless $PageBackground is defined
+
+$FixedVariableShadow = false unless $FixedVariableShadow is defined
+$FixedBackground = false unless $FixedBackground is defined
+$FixedBorder = false unless $FixedBorder is defined
+$FixedVariableMargin = false unless $FixedVariableMargin is defined
+$VariableBackground = false unless $VariableBackground is defined
+$VariableBorder = false unless $VariableBorder is defined
+$VariableShadow = false unless $VariableShadow is defined
+$FixedVariableBackground = #FFF unless $FixedVariableBackground is defined
+$FixedVariableBorder = false unless $FixedVariableBorder is defined
+$VariableContentBackground = false unless $VariableContentBackground is defined
+$VariableAutoContentPadding = true unless $VariableAutoContentPadding is defined
+
+$IE6_VARIABLE_WIDTH = 700px unless $IE6_VARIABLE_WIDTH is defined
+
+$PageShadowedBowBackground = #FFF unless $PageShadowedBowBackground is defined
+$PageShadowedBowBorder = false unless $PageShadowedBowBorder is defined
+$PageShadowedBowShadowColor = #888 unless $PageShadowedBowShadowColor is defined
+
+$BreadcrumbsInVariable = false unless $BreadcrumbsInVariable is defined
+$BreadcrumbsBackground = false unless $BreadcrumbsBackground is defined
+$BreadcrumbsFontSize = 0.88em unless $BreadcrumbsFontSize is defined
+
+
+html
+	/* Prevents iOS text size adjust after orientation change, without disabling user zoom. */
+	-webkit-text-size-adjust 100%
+	-ms-text-size-adjust 100%
+
+
+
+html,body
+	if $PAGE_100
+		height:100%
+	else
+		min-height:100%
+
+body
+	/*62.5%*/
+	font normal 80% Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif
+	bg $BodyBackground
+	color $BodyColor
+	margin 0
+	padding 0
+	/* @include webkitAntialiased; */
+
+
+
+input,textarea
+	font:normal 1.05em Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif;
+
+@includeCore 'base/interactions';
+
+#container pre,#container code,kbd,samp
+	font:normal 1.07em 'Ubuntu Mono','UbuntuBeta Mono',Monaco,Menlo,"Courier New",monospace;
+
+body #container
+	if $PAGE_100
+		position:relative
+		height:auto
+		min-height:100%
+	
+	if $ContainerWidth
+		width:fif($ContainerWidth==true,998px,$ContainerWidth)
+		margin:0 auto;
+	else
+		min-width:1000px
+	bg $ContainerBackground
+	boxShadow $ContainerShadow if $ContainerShadow
+
+if $ContainerWidth
+	@media min-width:1200px
+		body #container
+			width 1180px
+
+unless $PAGE_FIXED
+	html > body #container{height:auto}
+
+header,div.header
+	boxShadow($HeaderShadow,5px) if $HeaderShadow
+	borderRadiusBottom(5px) if $HeaderBorderRadius
+	padding $HeaderPadding if $HeaderPadding
+	display block
+	/*width:98%;
+	margin:0 auto; padding:1px 0;*/
+	
+	/*width:100%;*/
+	z-index 11
+	
+	if $PAGE_FIXED
+		position:fixed
+		_position:absolute
+		top:0;left:0;right:0;
+
+header,div.header,table tr.head th,table thead th,.flashMessage
+	bg($HeaderBackground)
+	color:$HeaderColor if $HeaderColor
+
+if $HeaderColor
+	header a,div.header a,header a:hover,div.header a:hover{color:$HeaderColor;}
+
+header div{font-size:0.95em}
+header div.right{
+	float:right;text-align:right;
+	padding:2px 3px;
+	
+}
+header div.right a{font-size:8.5pt}
+
+footer,div.footer
+	color:$FooterColor;
+	font-size:0.7em;
+	padding-bottom:5px;
+	text-align:center;
+	width:100%;
+	clear:both;
+
+if $PAGE_100
+	footer
+		position:absolute;
+		bottom:0;
+
+footer a,div.footer a,#breadcrumbs a,h1 a,h2 a{text-decoration:none}
+
+#breadcrumbs
+	font-size:$BreadcrumbsFontSize if $BreadcrumbsFontSize
+	if $BreadcrumbsBackground
+		margin 3px 3px 5px
+		padding 2px 3px 3px
+		bg $BreadcrumbsBackground
+	unless $BreadcrumbsInVariable
+		boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
+		border-radius:$FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
+		unless $BreadcrumbsBackground
+			if $FixedVariableBackground
+				margin:3px 3px 5px
+				padding:2px 3px 3px
+				background:$FixedVariableBackground
+			else
+				margin:0 0 5px
+
+
+#breadcrumbs span.last{
+	cursor:default;
+	color:$InteractionCurrentColor;
+}
+
+
+#page
+	/*float:left;*/
+	/*overflow: visible; /* nouveau contexte => pour les clear à l'interieur */
+	/*overflow-x: hidden;*/
+	padding-bottom:20px;
+	if $PageWidth
+		width:$PageWidth;
+		margin:0 auto;
+	
+	bg($PageBackground)
+	
+	if $PAGE_FIXED
+		margin 0 3px unless $PageWidth
+		padding-top 38px;
+		position relative;/*position:absolute;top:40px;bottom:20px;left:5px;right:5px;*/
+		overflow visible; /* nouveau contexte => pour les clear à l'interieur */
+		overflow-x hidden;
+	
+	unless $PAGE_FIXED
+		position relative;
+		margin-top 8px;
+	
+	
+	div.fixed,div.variable
+		if $PAGE_FIXED
+			position relative /*position:absolute;right:0;top:0;left:0;bottom:0;*/
+			margin 3px if $FixedVariableMargin
+		
+		unless $PAGE_FIXED
+			overflow auto; /* nouveau contexte => pour les clear à l'interieur */
+			overflow-x: hidden;
+			position:relative;
+			margin:0 10px if $FixedVariableMargin
+		
+		boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
+		border-radius:$FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
+		background:$FixedVariableBackground if $FixedVariableBackground
+		border:$FixedVariableBorder if $FixedVariableBorder 
+	
+	if $PAGE_FIXED
+		div.fixed.right{float:left}
+		div.fixed.left{float:right}
+	
+	if $PAGE_FIXED or $FixedBackground or $FixedBorder
+		div.fixed
+			overflow: auto; /* nouveau contexte => pour les clear à l'interieur */
+			overflow-x: hidden;
+			background:$FixedBackground if $FixedBackground
+			border:1px solid $FixedBorder if $FixedBorder
+			if $PAGE_FIXED
+				position:fixed; _position:absolute; z-index:6;
+				top:40px; left:0; right:0; bottom:20px;
+	
+	if $PAGE_FIXED
+		div.fixed.right{left:auto; *float:left;/* for ie7 */}
+		div.fixed.left{right:auto; *float:right;/* for ie7 */}
+	
+	unless $PAGE_FIXED
+		div.fixed.right{float:right;}
+		div.fixed.left{float:left;}
+	
+	div.fixed h2{ text-align:center;}
+	
+	div.variable
+		bg $VariableBackground
+		border:1px solid $VariableBorder if $VariableBorder
+		boxShadow($VariableShadow) if $VariableShadow
+	
+	
+	div.variablep{margin:0;padding:0;float:left; }
+
+
+.content,#page .content
+	padding 5px 10px
+
+#page
+	div.variable.padding{padding:8px 10px}
+	div.variable.paddingtop{padding:8px 0 0}
+	if $VariableAutoContentPadding
+		unless $VariableBackground
+			unless $FixedVariableBackground
+				div.variable > div.content{padding:5px 5px 0 0}
+	div.variable.padding > div.content{padding:5px 0;}
+	
+	div.variable > h1{ margin:0; }
+	div.variable.content div.content,div.variable .content div.content{clear:both;position:relative; bg:$VariableContentBackground; }
+	div.variable.content div.content.float_left,div.variable .content div.content.float_left{clear:none}
+	div.variable div.content.float_left.noclear{clear:none}
+	/*div.variable div.content h2{ margin:2px 0; }*/
+	
+	div.overflow{margin:0;padding:0;width:100%;overflow:auto;clear:both}
+	
+	div.newContext{ position:relative }
+	
+	#dynamictabsContent
+		position:relative;
+
+
+#page.absolute
+	position:absolute;top:0;bottom:0;left:5px;right:5px;
+	
+	div.variable{
+		position:absolute;right:0;top:38px;left:0;bottom:20px;
+		overflow:auto;
+	}
+
+
+
+unless $PAGE_FIXED
+	/* IE <= 6 */
+	* html body #page div.variable{
+		float:left;
+		width:$IE6_VARIABLE_WIDTH;
+	}
+	/*
+	* html body #page > .content{
+		overflow:hidden;
+	}*/
+
+div.shadowed-box{
+	padding:4px 6px; margin:0 5px 10px;
+	border-radius:4px;
+	boxShadow($PageShadowedBowShadowColor,4px);
+	background:$PageShadowedBowBackground;
+	border:$PageShadowedBowBorder if $PageShadowedBowBorder
+	
+	h2{font-size:1.3em; margin-top:2px;}
+}
+
+/* Width & Height */
+
+.w160{width:160px}
+.w200{width:200px}
+.w280{width:280px}
+.w300{width:300px}
+.w350{width:350px}
+.w380{width:380px}
+.w400{width:400px}
+.w420{width:420px}
+.w480{width:480px}
+.w600{width:600px}
+.w640{width:640px}
+.w840{width:840px}
+
+.wp10{width:10%}
+.wp20{width:20%}
+.wp30{width:30%}
+.wp33{width:33.33%;*width:33.3%}
+.wp40{width:40%}
+.wp50{width:50%}
+.wp60{width:60%}
+.wp70{width:70%}
+.wp80{width:80%}
+.wp90{width:90%}
+.wp100{width:100%}
+
+.h600{height:600px}
+.h400{height:400px}
+.h200{height:200px}
+.h300{height:300px}
+
+@if $PAGE_FIXED{
+	#page div.variable.l160{left:170px}
+	#page div.variable.l200{left:210px}
+	#page div.variable.l280{left:290px}
+	#page div.variable.l300{left:320px}
+	#page div.variable.l350{left:360px}
+	#page div.variable.l380{left:390px}
+	#page div.variable.l400{left:410px}
+	#page div.variable.l420{left:430px}
+	
+	#page div.variable.r160{right:170px}
+	#page div.variable.r200{right:210px}
+	#page div.variable.r300{right:310px}
+	#page div.variable.r350{right:360px}
+	#page div.variable.r380{right:390px}
+	#page div.variable.r400{right:410px}
+	#page div.variable.r420{right:430px}
+}
+
+#page.ml160{margin-left:170px}
+#page.ml200,.ml200{margin-left:210px}
+#page.ml280,.ml280{margin-left:290px}
+#page.ml300{margin-left:320px}
+#page.ml350{margin-left:360px}
+#page.ml380{margin-left:390px}
+#page.ml400{margin-left:410px}
+#page.ml420{margin-left:430px}
+
+#page.mr160{margin-right:170px}
+#page.mr200,.mr200{margin-right:210px}
+#page.mr280,.mr280{margin-right:290px}
+#page.mr300,.mr300{margin-right:310px}
+#page.mr350{margin-right:360px}
+#page.mr380{margin-right:390px}
+#page.mr400{margin-right:410px}
+#page.mr420{margin-right:430px}
+
+.mr10{margin-right:10px !important}/* DO NOT put this in #page */
+.mr20{margin-right:20px !important}
+
+.ml10{margin-left:10px !important}
+.ml20{margin-left:20px !important}
+
+.mt10,.mtb10{margin-top:10px !important}
+.mt20,div.sepTop.mt20{margin-top:20px !important}
+.mt6{margin-top:6px !important}
+
+.mb10,.mtb10{margin-bottom:10px !important}
+.mb20{margin-bottom:20px !important}
+.mb6{margin-bottom:6px !important}
+
+
+@includeCore 'base/messages';
+

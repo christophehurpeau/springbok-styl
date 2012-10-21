@@ -1,0 +1,16 @@
+$IE_COMPATIBILITY=true
+
+fif(cond,rthen,relse)
+	if cond
+		rthen
+	else
+		relse
+
+findBestFgColor(backgroundColor,blackColor=#333,whiteColor=#fafafa)
+	fif lightness(backgroundColor) > 60 blackColor whiteColor
+
+isBoolean(val)
+	p(val)
+
+@includeCore 'functions/backgrounds';
+@includeCore 'functions/sprites';
