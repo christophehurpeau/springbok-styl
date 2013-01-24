@@ -86,7 +86,7 @@ body #container
 	bg $ContainerBackground
 	boxShadow $ContainerShadow if $ContainerShadow
 
-if $ContainerWidth
+if $ContainerWidth==true
 	@media min-width:1200px
 		body #container
 			width 1180px
@@ -94,7 +94,7 @@ if $ContainerWidth
 unless $PAGE_FIXED
 	html > body #container{height:auto}
 
-header,div.header
+header
 	boxShadow($HeaderShadow,5px) if $HeaderShadow
 	borderRadiusBottom(5px) if $HeaderBorderRadius
 	padding $HeaderPadding if $HeaderPadding
@@ -110,12 +110,12 @@ header,div.header
 		_position:absolute
 		top:0;left:0;right:0;
 
-header,div.header,table tr.head th,table thead th,.flashMessage
+header,table tr.head th,table thead th,.flashMessage
 	bg($HeaderBackground)
 	color:$HeaderColor if $HeaderColor
 
 if $HeaderColor
-	header a,div.header a,header a:hover,div.header a:hover{color:$HeaderColor;}
+	header a a,header a:hover{color:$HeaderColor;}
 
 header div{font-size:0.95em}
 header div.right{
@@ -125,20 +125,29 @@ header div.right{
 }
 header div.right a{font-size:8.5pt}
 
-footer,div.footer
-	color:$FooterColor;
-	font-size:0.7em;
-	padding-bottom:5px;
-	text-align:center;
-	width:100%;
-	clear:both;
 
-if $PAGE_100
-	footer
+$FooterBackground = false unless $FooterBackground is defined
+$FooterFontSize = 0.7em unless $FooterFontSize is defined
+$FooterPadding = false unless $FooterPadding is defined
+$FooterPaddingBottom = 5px unless $FooterPaddingBottom is defined
+
+footer
+	bg $BreadcrumbsBackground
+	color:$FooterColor
+	font-size:$FooterFontSize if $FooterFontSize
+	if $FooterPadding
+		padding:$FooterPadding
+	else if $FooterPaddingBottom
+		padding-bottom:$FooterPaddingBottom
+	text-align:center
+	width:100%
+	clear:both
+
+	if $PAGE_100
 		position:absolute;
 		bottom:0;
 
-footer a,div.footer a,#breadcrumbs a,h1 a,h2 a{text-decoration:none}
+footer a,#breadcrumbs a,h1 a,h2 a{text-decoration:none}
 
 #breadcrumbs
 	font-size:$BreadcrumbsFontSize if $BreadcrumbsFontSize
