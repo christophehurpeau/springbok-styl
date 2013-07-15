@@ -90,7 +90,7 @@ body #container
 	bg $ContainerBackground
 	boxShadow $ContainerShadow if $ContainerShadow
 
-if $ContainerWidth
+if $ContainerWidth==true
 	@media min-width:1200px
 		body #container
 			width 1180px
@@ -98,7 +98,8 @@ if $ContainerWidth
 unless $PAGE_FIXED
 	html > body #container{height:auto}
 
-header, div.header
+//header, div.header
+header
 	boxShadow($HeaderShadow,5px) if $HeaderShadow
 	borderRadiusBottom(5px) if $HeaderBorderRadius
 	padding $HeaderPadding if $HeaderPadding
@@ -116,12 +117,13 @@ header, div.header
 		/*_position:absolute
 		top:0;left:0;right:0;*/
 
-header, div.header, table tr.head th, table thead th, .flashMessage
+// header, div.header, table tr.head th, table thead th, .flashMessage
+header, table tr.head th, table thead th, .flashMessage
 	bg $HeaderBackground
 	color $HeaderColor if $HeaderColor
 
 if $HeaderColor
-	header a,div.header a,header a:hover,div.header a:hover{color:$HeaderColor;}
+	header a a,header a:hover{color:$HeaderColor;}
 
 header div{font-size:0.95em}
 header div.right{
@@ -158,7 +160,6 @@ footer a
 
 footer a, div.footer a, #breadcrumbs a, h1 a, h2 a
 	text-decoration:none
-
 
 #breadcrumbs
 	$BreadcrumbsPadding ?= -1
