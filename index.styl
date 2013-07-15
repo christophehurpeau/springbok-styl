@@ -1,4 +1,4 @@
-$IE_COMPATIBILITY=true
+$IE_COMPATIBILITY ?= true
 
 fif(cond,rthen,relse)
 	if cond
@@ -6,11 +6,96 @@ fif(cond,rthen,relse)
 	else
 		relse
 
-findBestFgColor(backgroundColor,blackColor=#333,whiteColor=#fafafa)
-	fif lightness(backgroundColor) > 60 blackColor whiteColor
+findBestFgColor(backgroundColor,blackColor=#333,whiteColor=#fdfdfd)
+	fif lightness(backgroundColor) < 60 blackColor whiteColor
+/*	fif dark(backgroundColor) blackColor whiteColor*/
 
 isBoolean(val)
 	p(val)
 
+
+boxShadow($color,$blur=false,$hOffset=0,$vOffset=0,$spread=false,$inset=false)
+	$color = 0 if $color == none
+	if $color == 0
+		box-shadow 0
+	else
+		if length($color) > 1
+			$blur = $color[1]
+			$color = $color[0]
+		$full = $hOffset $vOffset
+		$full = $full $blur if $blur
+		$full = $full $spread if $spread
+		$full = $full $color
+		$full = inset $full if $inset
+		box-shadow: $full
+		/* http://msdn.microsoft.com/en-us/library/ms532985(v=vs.85).aspx
+		@if $IE_COMPATIBILITY and  $inset==false{
+			@if $hOffset==0 and $vOffset==0 and $blur{
+				$max:max(-$blur/1px,$blur/1px); $min:min(-$blur/1px,$blur/1px);
+				filter:
+					progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$max}, offY=0),
+					progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$min}, offY=0),
+					progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=0, offY=#{$max}),
+					progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=0, offY=#{$min});
+			}@else{
+				@if $blur{
+					@if $vOffset==0{
+						$max:max(-$hOffset/1px,$hOffset/1px); $min:min(-$hOffset/1px,$hOffset/1px);
+						filter:
+							progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$max}, offY=0),
+							progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$min}, offY=0);
+					}@else{
+						$maxH:max(-$hOffset/1px,$hOffset/1px); $minH:min(-$hOffset/1px,$hOffset/1px);
+						$maxV:max(-$vOffset/1px,$vOffset/1px); $minV:min(-$vOffset/1px,$vOffset/1px);
+						filter:
+							progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$maxH}, offY=#{$maxH}),
+							progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$minH}, offY=#{$maxH}),
+							progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$maxH}, offY=#{$minV}),
+							progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=#{$minH}, offY=#{$minV});
+					}
+				}@else{
+					filter:progid:DXImageTransform.Microsoft.DropShadow(color='#{$color}', offX=$hOffset, offY=$vOffset);
+				}
+			}
+		}
+		*/
+		/*@if $hOffset==0 and $vOffset==1px{
+			// http://www.marcuspope.com/blog/Less-CSS-Mixins-for-cross-browser-styles
+			filter: 
+				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=180,strength=4), 
+				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=225,strength=4), 
+				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=270,strength=5);
+		}*/
+
+
+insetBoxShadow($color,$blur=false,$hOffset=0,$vOffset=0,$spread=false)
+	boxShadow $color $blur $hOffset $vOffset $spread true
+
+
+borderRadiusBottom($length)
+	border-bottom-right-radius $length
+	border-bottom-left-radius $length
+
+borderRadiusTop($length)
+	border-top-right-radius $length
+	border-top-left-radius $length
+
+borderRadiusRight($length)
+	border-top-right-radius $length
+	border-bottom-right-radius $length
+
+borderRadiusLeft($length)
+	border-top-left-radius $length
+	border-bottom-left-radius $length
+
+border($color,$args...)
+	if $color is a 'color'
+		border: 1px solid $color $args
+	else
+		border: arguments
+
+
 @includeCore 'functions/backgrounds';
 @includeCore 'functions/sprites';
+@includeCore 'functions/compat';
+@includeCore 'functions/positions';

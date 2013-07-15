@@ -1,0 +1,39 @@
+-pos-helper(type, args)
+	position: unquote(type)
+	if type=='fixed'
+		_position: absolute;
+	
+	i = 0
+	lengthArgs = length(args)
+	{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+	if lengthArgs > i += 1
+		{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+	if lengthArgs > i += 1
+		{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+	if lengthArgs > i += 1
+		{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+
+/*
+ * Position utility.
+ *
+ * Synopsis:
+ *
+ * fixed: <pos> [n] <pos> [n] <pos> [n] <pos> [n]
+ *
+ * Examples:
+ *
+ * fixed: top left
+ * fixed: top 5px left
+ * fixed: top left 5px
+ * fixed: top 5px left 5px
+ *
+ */
+
+fixed()
+	-pos-helper('fixed', arguments)
+
+absolute()
+	-pos-helper('absolute', arguments)
+
+relative()
+	-pos-helper('relative', arguments)

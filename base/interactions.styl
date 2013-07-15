@@ -1,10 +1,10 @@
 /*$JQueryUI=false unless $JQueryUI is defined*/
 
-$InteractionDefaultBackgroundColor=$InteractionDefaultColor unless $InteractionDefaultBackgroundColor is defined
-$InteractionDefaultTextShadow=false unless $InteractionDefaultTextShadow is defined
-$InteractionDefaultBackgroundColor=false unless $InteractionDefaultBackgroundColor is defined
-$InteractionHoverBackgroundColor=$InteractionHoverColor unless $InteractionHoverBackgroundColor is defined
-$InteractionCurrentBackgroundColor=$InteractionCurrentColor unless $InteractionCurrentBackgroundColor is defined
+$InteractionDefaultBackgroundColor ?= $InteractionDefaultColor
+$InteractionDefaultTextShadow ?= false
+$InteractionDefaultBackgroundColor ?= false
+$InteractionHoverBackgroundColor ?= $InteractionHoverColor
+$InteractionCurrentBackgroundColor ?= $InteractionCurrentColor
 
 a
 	color:$InteractionDefaultColor

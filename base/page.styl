@@ -1,43 +1,47 @@
 @includeCore 'base/html5';
 
 
-$PAGE_100 = true unless $PAGE_100 is defined
-$PAGE_FIXED = false unless $PAGE_FIXED is defined
+$PAGE_100 ?= true
+$PAGE_FIXED ?= false
 
-$HeaderBackground = false unless $HeaderBackground is defined
-$HeaderColor = false unless $HeaderColor is defined
-$HeaderBorderRadius = false unless $HeaderBorderRadius is defined
-$HeaderPadding = false unless $HeaderPadding is defined
+$HeaderBackground ?= false
+$HeaderColor ?= false
+$HeaderBorderRadius ?= false
+$HeaderPadding ?= false
+$HeaderBorder ?= false
+$HeaderHeight ?= false
 
+$ContainerWidth ?= true
+$ContainerBackground ?= false
+$ContainerShadow ?= false
 
-$ContainerWidth = true unless $ContainerWidth is defined
-$ContainerBackground = false unless $ContainerBackground is defined
-$ContainerShadow = false unless $ContainerShadow is defined
+$PageWidth ?= false
+$PageBackground ?= false
+$PagePaddingBottom ?= true
 
-$PageWidth = false unless $PageWidth is defined
-$PageBackground = false unless $PageBackground is defined
+$FixedVariableShadow ?= false
+$FixedBackground ?= false
+$FixedBorder ?= false
+$FixedVariableMargin ?= false
+$VariableBackground ?= false
+$VariableBorder ?= false
+$VariableShadow ?= false
+$FixedVariableBackground ?= #FFF
+$FixedVariableBorder ?= false
+$VariableContentBackground ?= false
+$VariableAutoContentPadding ?= true
 
-$FixedVariableShadow = false unless $FixedVariableShadow is defined
-$FixedBackground = false unless $FixedBackground is defined
-$FixedBorder = false unless $FixedBorder is defined
-$FixedVariableMargin = false unless $FixedVariableMargin is defined
-$VariableBackground = false unless $VariableBackground is defined
-$VariableBorder = false unless $VariableBorder is defined
-$VariableShadow = false unless $VariableShadow is defined
-$FixedVariableBackground = #FFF unless $FixedVariableBackground is defined
-$FixedVariableBorder = false unless $FixedVariableBorder is defined
-$VariableContentBackground = false unless $VariableContentBackground is defined
-$VariableAutoContentPadding = true unless $VariableAutoContentPadding is defined
+$IE6_VARIABLE_WIDTH ?= 700px
 
-$IE6_VARIABLE_WIDTH = 700px unless $IE6_VARIABLE_WIDTH is defined
+$PageShadowedBowBackground ?= #FFF
+$PageShadowedBowBorder ?= false
+$PageShadowedBowShadowColor ?= #888
 
-$PageShadowedBowBackground = #FFF unless $PageShadowedBowBackground is defined
-$PageShadowedBowBorder = false unless $PageShadowedBowBorder is defined
-$PageShadowedBowShadowColor = #888 unless $PageShadowedBowShadowColor is defined
-
-$BreadcrumbsInVariable = false unless $BreadcrumbsInVariable is defined
-$BreadcrumbsBackground = false unless $BreadcrumbsBackground is defined
-$BreadcrumbsFontSize = 0.88em unless $BreadcrumbsFontSize is defined
+$BreadcrumbsInVariable ?= false
+$BreadcrumbsBackground ?= false
+$BreadcrumbsFontSize ?= 0.88em
+$BreadcrumbsShadow ?= -1
+$BreadcrumbsColor ?= false
 
 
 html
@@ -94,10 +98,12 @@ if $ContainerWidth
 unless $PAGE_FIXED
 	html > body #container{height:auto}
 
-header,div.header
+header, div.header
 	boxShadow($HeaderShadow,5px) if $HeaderShadow
 	borderRadiusBottom(5px) if $HeaderBorderRadius
 	padding $HeaderPadding if $HeaderPadding
+	border $HeaderBorder if $HeaderBorder
+	height $HeaderHeight if $HeaderHeight
 	display block
 	/*width:98%;
 	margin:0 auto; padding:1px 0;*/
@@ -106,13 +112,13 @@ header,div.header
 	z-index 11
 	
 	if $PAGE_FIXED
-		position:fixed
-		_position:absolute
-		top:0;left:0;right:0;
+		fixed top left right
+		/*_position:absolute
+		top:0;left:0;right:0;*/
 
-header,div.header,table tr.head th,table thead th,.flashMessage
-	bg($HeaderBackground)
-	color:$HeaderColor if $HeaderColor
+header, div.header, table tr.head th, table thead th, .flashMessage
+	bg $HeaderBackground
+	color $HeaderColor if $HeaderColor
 
 if $HeaderColor
 	header a,div.header a,header a:hover,div.header a:hover{color:$HeaderColor;}
@@ -125,173 +131,151 @@ header div.right{
 }
 header div.right a{font-size:8.5pt}
 
-footer,div.footer
-	color:$FooterColor;
-	font-size:0.7em;
-	padding-bottom:5px;
-	text-align:center;
-	width:100%;
-	clear:both;
+$FooterBackground ?= false
+$FooterColor ?= false
+$FooterFontSize ?= 0.75em
+$FooterPadding ?= false
+$FooterPaddingBottom ?= 4px
+$FooterLinkColor ?= false
+footer, div.footer
+	bg $FooterBackground
+	color $FooterColor if $FooterColor
+	font-size $FooterFontSize
+	if $FooterPadding
+		padding $FooterPadding
+	else if $FooterPaddingBottom
+		padding-bottom $FooterPaddingBottom
+	text-align center
+	width 100%
+	clear both
 
 if $PAGE_100
 	footer
-		position:absolute;
-		bottom:0;
+		absolute bottom
 
-footer a,div.footer a,#breadcrumbs a,h1 a,h2 a{text-decoration:none}
+footer a
+	color $FooterLinkColor !important if $FooterLinkColor
+
+footer a, div.footer a, #breadcrumbs a, h1 a, h2 a
+	text-decoration:none
+
 
 #breadcrumbs
-	font-size:$BreadcrumbsFontSize if $BreadcrumbsFontSize
+	$BreadcrumbsPadding ?= -1
+	$BreadcrumbsMargin ?= 0 0 5px
+	
 	if $BreadcrumbsBackground
-		margin 3px 3px 5px
-		padding 2px 3px 3px
+		$BreadcrumbsMargin = 3px 3px 5px
+		$BreadcrumbsPadding = 2px 3px 3px if $BreadcrumbsPadding == -1
 		bg $BreadcrumbsBackground
 	unless $BreadcrumbsInVariable
-		boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
-		border-radius:$FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
+		$BreadcrumbsShadow = $FixedVariableShadow if $FixedVariableShadow and $BreadcrumbsShadow == -1
+		border-radius $FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
 		unless $BreadcrumbsBackground
 			if $FixedVariableBackground
 				margin:3px 3px 5px
-				padding:2px 3px 3px
-				background:$FixedVariableBackground
-			else
-				margin:0 0 5px
+				$BreadcrumbsPadding = 2px 3px 3px if $BreadcrumbsPadding == -1
+				bg $FixedVariableBackground
+	
+	boxShadow($BreadcrumbsShadow,3px) if $BreadcrumbsShadow and $BreadcrumbsShadow != -1
+	margin $BreadcrumbsMargin if $BreadcrumbsMargin
+	font-size $BreadcrumbsFontSize if $BreadcrumbsFontSize
+	padding $BreadcrumbsPadding if $BreadcrumbsPadding
+	if $BreadcrumbsColor
+		color $BreadcrumbsColor;
+		a
+			color $BreadcrumbsColor !important
 
 
-#breadcrumbs span.last{
-	cursor:default;
-	color:$InteractionCurrentColor;
-}
+#breadcrumbs span.last
+	cursor default
+	color $InteractionCurrentColor unless $BreadcrumbsColor
 
+/*
+if $PAGE_FIXED
+	::-webkit-scrollbar{ width:6px; height:8px ; }
+	::-webkit-scrollbar-track{ background:#777; border-radius:2px; -webkit-box-shadow:0 0 1px #000, inset 0 0 1px #CCC; }
+	::-webkit-scrollbar-thumb{ background:#000; border-radius:2px; -webkit-box-shadow:inset 0 0 2px #666; }
+*/
 
 #page
 	/*float:left;*/
 	/*overflow: visible; /* nouveau contexte => pour les clear à l'interieur */
 	/*overflow-x: hidden;*/
-	padding-bottom:20px;
 	if $PageWidth
-		width:$PageWidth;
-		margin:0 auto;
+		width $PageWidth
+		margin 0 auto
 	
-	bg($PageBackground)
+	bg $PageBackground
 	
 	if $PAGE_FIXED
-		margin 0 3px unless $PageWidth
-		padding-top 38px;
-		position relative;/*position:absolute;top:40px;bottom:20px;left:5px;right:5px;*/
-		overflow visible; /* nouveau contexte => pour les clear à l'interieur */
-		overflow-x hidden;
-	
-	unless $PAGE_FIXED
+		absolute top 37px bottom 16px left right
+		overflow visible /* nouveau contexte => pour les clear à l'interieur */
+		overflow-x hidden
+		/* http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-styling-scrollbars-to-match-your-ui-design/ */
+		/* http://css-tricks.com/custom-scrollbars-in-webkit/ */
+		scrollbar-face-color #111 /* IE */
+	else
 		position relative;
-		margin-top 8px;
-	
-	
-	div.fixed,div.variable
-		if $PAGE_FIXED
-			position relative /*position:absolute;right:0;top:0;left:0;bottom:0;*/
-			margin 3px if $FixedVariableMargin
-		
-		unless $PAGE_FIXED
-			overflow auto; /* nouveau contexte => pour les clear à l'interieur */
-			overflow-x: hidden;
-			position:relative;
-			margin:0 10px if $FixedVariableMargin
-		
-		boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
-		border-radius:$FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
-		background:$FixedVariableBackground if $FixedVariableBackground
-		border:$FixedVariableBorder if $FixedVariableBorder 
-	
-	if $PAGE_FIXED
-		div.fixed.right{float:left}
-		div.fixed.left{float:right}
-	
-	if $PAGE_FIXED or $FixedBackground or $FixedBorder
-		div.fixed
-			overflow: auto; /* nouveau contexte => pour les clear à l'interieur */
-			overflow-x: hidden;
-			background:$FixedBackground if $FixedBackground
-			border:1px solid $FixedBorder if $FixedBorder
-			if $PAGE_FIXED
-				position:fixed; _position:absolute; z-index:6;
-				top:40px; left:0; right:0; bottom:20px;
-	
-	if $PAGE_FIXED
-		div.fixed.right{left:auto; *float:left;/* for ie7 */}
-		div.fixed.left{right:auto; *float:right;/* for ie7 */}
-	
-	unless $PAGE_FIXED
-		div.fixed.right{float:right;}
-		div.fixed.left{float:left;}
-	
-	div.fixed h2{ text-align:center;}
-	
-	div.variable
-		bg $VariableBackground
-		border:1px solid $VariableBorder if $VariableBorder
-		boxShadow($VariableShadow) if $VariableShadow
-	
-	
-	div.variablep{margin:0;padding:0;float:left; }
+		$PageMarginTop ?= 8px
+		margin-top $PageMarginTop if $PageMarginTop
+		padding-bottom 20px if $PagePaddingBottom
 
+.col.fixed, .col.variable
+	overflow auto;
+	if $PAGE_FIXED
+		absolute left 2px right 2px top bottom
+		margin 3px if $FixedVariableMargin
+	else
+		overflow-x hidden /* nouveau contexte => pour les clear à l'interieur */
+		position relative;
+		margin 0 10px if $FixedVariableMargin
+	
+	/* IE <= 7 */
+	*float:left;
+	
+	z-index:1;
+	
+	boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
+	border-radius $FixedVariableBorderRadius if $FixedVariableBorderRadius
+	bg $FixedVariableBackground
+	color $FixedVariableColor if $FixedVariableColor
+	border $FixedVariableBorder if $FixedVariableBorder
+
+.col.fixed
+	if $PAGE_FIXED
+		position:fixed; _position:absolute; z-index:6;
+		top:$HeaderHeight; bottom:14px; _top:0; _bottom:0;
+		&.right{left:auto; *float:left;/* for ie7 */}
+		&.left{right:auto; *float:right;/* for ie7 */}
+	bg $FixedBackground
+	color $FixedColor if $FixedColor
+	border $FixedBorder if $FixedBorder
+	
+	h2
+		text-align:center;
+
+.col.variable
+	bg $VariableBackground
+	color $VariableColor if $VariableColor
+	border $VariableBorder if $VariableBorder
+	boxShadow $VariableShadow if $VariableShadow
+	padding $VariablePadding if $VariablePadding
+	
 
 .content,#page .content
 	padding 5px 10px
 
 #page
-	div.variable.padding{padding:8px 10px}
-	div.variable.paddingtop{padding:8px 0 0}
-	if $VariableAutoContentPadding
-		unless $VariableBackground
-			unless $FixedVariableBackground
-				div.variable > div.content{padding:5px 5px 0 0}
-	div.variable.padding > div.content{padding:5px 0;}
+	div.overflow
+		margin 0
+		padding 0
+		width 100%
+		overflow auto
+		clear both
 	
-	div.variable > h1{ margin:0; }
-	div.variable.content div.content,div.variable .content div.content{clear:both;position:relative; bg:$VariableContentBackground; }
-	div.variable.content div.content.float_left,div.variable .content div.content.float_left{clear:none}
-	div.variable div.content.float_left.noclear{clear:none}
-	/*div.variable div.content h2{ margin:2px 0; }*/
-	
-	div.overflow{margin:0;padding:0;width:100%;overflow:auto;clear:both}
-	
-	div.newContext{ position:relative }
-	
-	#dynamictabsContent
-		position:relative;
-
-
-#page.absolute
-	position:absolute;top:0;bottom:0;left:5px;right:5px;
-	
-	div.variable{
-		position:absolute;right:0;top:38px;left:0;bottom:20px;
-		overflow:auto;
-	}
-
-
-
-unless $PAGE_FIXED
-	/* IE <= 6 */
-	* html body #page div.variable{
-		float:left;
-		width:$IE6_VARIABLE_WIDTH;
-	}
-	/*
-	* html body #page > .content{
-		overflow:hidden;
-	}*/
-
-div.shadowed-box{
-	padding:4px 6px; margin:0 5px 10px;
-	border-radius:4px;
-	boxShadow($PageShadowedBowShadowColor,4px);
-	background:$PageShadowedBowBackground;
-	border:$PageShadowedBowBorder if $PageShadowedBowBorder
-	
-	h2{font-size:1.3em; margin-top:2px;}
-}
+	div.newContext
+		position relative
 
 /* Width & Height */
 
@@ -326,41 +310,11 @@ div.shadowed-box{
 .h300{height:300px}
 
 @if $PAGE_FIXED{
-	#page div.variable.l160{left:170px}
-	#page div.variable.l200{left:210px}
-	#page div.variable.l280{left:290px}
-	#page div.variable.l300{left:320px}
-	#page div.variable.l350{left:360px}
-	#page div.variable.l380{left:390px}
-	#page div.variable.l400{left:410px}
-	#page div.variable.l420{left:430px}
-	
-	#page div.variable.r160{right:170px}
-	#page div.variable.r200{right:210px}
-	#page div.variable.r300{right:310px}
-	#page div.variable.r350{right:360px}
-	#page div.variable.r380{right:390px}
-	#page div.variable.r400{right:410px}
-	#page div.variable.r420{right:430px}
+	.ml160{margin-left:170px}
+	.ml200{margin-left:210px}
+	.mr160{margin-right:170px}
+	.mr200{margin-right:210px}
 }
-
-#page.ml160{margin-left:170px}
-#page.ml200,.ml200{margin-left:210px}
-#page.ml280,.ml280{margin-left:290px}
-#page.ml300{margin-left:320px}
-#page.ml350{margin-left:360px}
-#page.ml380{margin-left:390px}
-#page.ml400{margin-left:410px}
-#page.ml420{margin-left:430px}
-
-#page.mr160{margin-right:170px}
-#page.mr200,.mr200{margin-right:210px}
-#page.mr280,.mr280{margin-right:290px}
-#page.mr300,.mr300{margin-right:310px}
-#page.mr350{margin-right:360px}
-#page.mr380{margin-right:390px}
-#page.mr400{margin-right:410px}
-#page.mr420{margin-right:430px}
 
 .mr10{margin-right:10px !important}/* DO NOT put this in #page */
 .mr20{margin-right:20px !important}

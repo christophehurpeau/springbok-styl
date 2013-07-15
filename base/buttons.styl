@@ -1,17 +1,17 @@
-$_BUTTON_OVERRIDE = false unless $_BUTTON_OVERRIDE is defined
-$BasicButtons = false unless $BasicButtons is defined
-$ButtonBoxShadow = 0 1px 1px rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.4) unless $ButtonBoxShadow is defined
-$ButtonTextShadow = #999 unless $ButtonTextShadow is defined
-$ButtonFocusColor = #FFF unless $ButtonFocusColor is defined
-$ButtonTextShadow = #555 unless $ButtonTextShadow is defined
+$_BUTTON_OVERRIDE ?= false
+$BasicButtons ?= false
+$ButtonBoxShadow ?= 0 1px 1px rgba(255,255,255,0.2) inset, 0 1px 2px rgba(0,0,0,0.4)
+$ButtonTextShadow ?= -1px 0 #000
+$ButtonFocusColor ?= #FFF
+$ButtonFocusTextShadow ?= false
 
-$ButtonBackground = #555555 #444444 unless $ButtonBackground is defined
-$ButtonHoverBackground = #666666 #555555 unless $ButtonHoverBackground is defined
-$ButtonFocusBackground = #555555 #777777 unless $ButtonFocusBackground is defined
-$ButtonColor = #EEE unless $ButtonColor is defined
-$ButtonBorder = 1px solid #111 unless $ButtonBorder is defined
-$ButtonHoverColor = #FFF unless $ButtonHoverColor is defined
-$ButtonHoverBorder = 1px solid #333333 unless $ButtonHoverBorder is defined
+$ButtonBackground ?= #555555 #444444
+$ButtonHoverBackground ?= #666666 #555555
+$ButtonFocusBackground ?= #555555 #777777
+$ButtonColor ?= #EEE
+$ButtonBorder ?= 1px solid #111
+$ButtonHoverColor ?= #FFF
+$ButtonHoverBorder ?= 1px solid #333333
 
 if $BasicButtons
 	$ButtonBackground = #FFF #F3F3F3
@@ -28,16 +28,16 @@ if $BasicButtons
 if $_BUTTON_OVERRIDE
 	html{
 		input.submit,button,.button{
-			bg($ButtonBackground);
-			border:$ButtonBorder;
-			color:$ButtonColor;
+			bg $ButtonBackground
+			border $ButtonBorder
+			color $ButtonColor
 		}
 		input.submit:hover,button:hover,.button:hover{
-			bg($ButtonHoverBackground);
-			@if $ButtonHoverBorder{ border:$ButtonHoverBorder; }
+			bg $ButtonHoverBackground
+			border $ButtonHoverBorder if $ButtonHoverBorder
 		}
 		body input.submit:focus,body button:focus,body .button:focus{
-			bg($ButtonFocusBackground);
+			bg $ButtonFocusBackground
 		}
 	}
 else
@@ -63,7 +63,7 @@ else
 		bg $ButtonFocusBackground
 		color $ButtonFocusColor
 		outline 0
-		text-shadow $ButtonTextShadow
+		text-shadow $ButtonFocusTextShadow if $ButtonFocusTextShadow
 	}
 	a.button,a.button:hover{text-decoration:none;display:inline-block;}
 	input.submit.bblock,button.bblock,.button.bblock,a.button.bblock,a.button.bblock:hover{display:block;}
