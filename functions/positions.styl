@@ -6,11 +6,11 @@
 	i = 0
 	lengthArgs = length(args)
 	{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
-	if lengthArgs > i += 1
-		{args[i]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
-	if lengthArgs > i += 1
+	if lengthArgs > i
 		{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
-	if lengthArgs > i += 1
+	if lengthArgs > i
+		{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
+	if lengthArgs > i
 		{args[i += 1]}: args[i + 1] is a 'unit' ? args[i += 1] : 0
 
 /*

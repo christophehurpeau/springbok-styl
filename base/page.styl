@@ -21,7 +21,9 @@ $PagePaddingBottom ?= true
 
 $FixedVariableShadow ?= false
 $FixedBackground ?= false
+$FixedColor ?= false
 $FixedBorder ?= false
+$FixedLinkColor ?= false
 $FixedVariableMargin ?= false
 $VariableBackground ?= false
 $VariableBorder ?= false
@@ -46,8 +48,7 @@ $BreadcrumbsColor ?= false
 
 html
 	/* Prevents iOS text size adjust after orientation change, without disabling user zoom. */
-	-webkit-text-size-adjust 100%
-	-ms-text-size-adjust 100%
+	text-size-adjust 100%
 
 
 
@@ -65,6 +66,8 @@ body
 	margin 0
 	padding 0
 	/* @include webkitAntialiased; */
+	// http://stackoverflow.com/questions/11589985/webkit-text-aliasing-gets-weird-during-css3-animations
+	-webkit-backface-visibility: hidden;
 
 
 
@@ -83,20 +86,20 @@ body #container
 		min-height:100%
 	
 	if $ContainerWidth
-		width:fif($ContainerWidth==true,998px,$ContainerWidth)
-		margin:0 auto;
+		width fif($ContainerWidth==true,998px,$ContainerWidth)
+		margin 0 auto
 	else
-		min-width:1000px
+		min-width 900px /* half a 1920px screen */
 	bg $ContainerBackground
 	boxShadow $ContainerShadow if $ContainerShadow
 
-if $ContainerWidth==true
+if $ContainerWidth is true
 	@media min-width:1200px
 		body #container
 			width 1180px
 
-unless $PAGE_FIXED
-	html > body #container{height:auto}
+html > body #container
+	height auto unless $PAGE_FIXED
 
 //header, div.header
 header
@@ -125,13 +128,15 @@ header, table tr.head th, table thead th, .flashMessage
 if $HeaderColor
 	header a a,header a:hover{color:$HeaderColor;}
 
-header div{font-size:0.95em}
-header div.right{
-	float:right;text-align:right;
-	padding:2px 3px;
-	
-}
-header div.right a{font-size:8.5pt}
+header div
+	font-size 0.95em
+header div.right
+	float right
+	text-align right
+	padding 2px 3px
+
+header div.right a
+	font-size 8.5pt
 
 $FooterBackground ?= false
 $FooterColor ?= false
@@ -233,9 +238,9 @@ if $PAGE_FIXED
 		margin 0 10px if $FixedVariableMargin
 	
 	/* IE <= 7 */
-	*float:left;
+	*float left
 	
-	z-index:1;
+	z-index 1
 	
 	boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
 	border-radius $FixedVariableBorderRadius if $FixedVariableBorderRadius
@@ -254,7 +259,10 @@ if $PAGE_FIXED
 	border $FixedBorder if $FixedBorder
 	
 	h2
-		text-align:center;
+		text-align center
+	
+	a, a:hover
+		color $FixedLinkColor if $FixedLinkColor
 
 .col.variable
 	bg $VariableBackground

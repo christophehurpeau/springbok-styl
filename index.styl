@@ -7,7 +7,7 @@ fif(cond,rthen,relse)
 		relse
 
 findBestFgColor(backgroundColor,blackColor=#333,whiteColor=#fdfdfd)
-	fif lightness(backgroundColor) < 60 blackColor whiteColor
+	fif lightness(backgroundColor) < 40 blackColor whiteColor
 /*	fif dark(backgroundColor) blackColor whiteColor*/
 
 isBoolean(val)
@@ -91,8 +91,12 @@ borderRadiusLeft($length)
 border($color,$args...)
 	if $color is a 'color'
 		border: 1px solid $color $args
-	else
+	else if $color is not false
 		border: arguments
+
+marginpadding($margin,$padding = true)
+	margin $margin
+	padding fif($padding is true,$padding,$margin)
 
 
 @includeCore 'functions/backgrounds';

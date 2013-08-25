@@ -1,0 +1,43 @@
+/* animation: <single-animation-name> || <time> || <timing-function> || <time> || <single-animation-iteration-count> || <single-animation-direction> || <single-animation-fill-mode> */
+/* https://github.com/daneden/animate.css/blob/master/animate.css */
+@keyframes fadeIn
+	0% {opacity: 0;}	
+	100% {opacity: 1;}
+
+@keyframes fadeOut
+	0% {opacity: 1;}	
+	100% {opacity: 0;}
+
+@keyframes slideDown
+	0% {opacity: 0; height: 1px !important; }
+	100% {opacity: 1; height: auto !important; }
+
+@keyframes slideUp
+	0% {opacity: 1; height: auto !important; }	
+	100% {opacity: 0; height: 1px !important; }
+
+
+@keyframes shake
+	0%, 100% {transform: translateX(0);}
+	10%, 30%, 50%, 70%, 90% {transform: translateX(-8px);}
+	20%, 40%, 60%, 80% {transform: translateX(8px);}
+	
+@keyframes wiggle
+	0% { transform: skewX(9deg); }
+	10% { transform: skewX(-8deg); }
+	20% { transform: skewX(7deg); }
+	30% { transform: skewX(-6deg); }
+	40% { transform: skewX(5deg); }
+	50% { transform: skewX(-4deg); }
+	60% { transform: skewX(3deg); }
+	70% { transform: skewX(-2deg); }
+	80% { transform: skewX(1deg); }
+	90% { transform: skewX(0deg); }
+	100% { transform: skewX(0deg); }
+
+@keyframes hinge
+	0% { transform: rotate(0); transform-origin: top left; animation-timing-function: ease-in-out; }	
+	20%, 60% { transform: rotate(80deg); transform-origin: top left; animation-timing-function: ease-in-out; }	
+	40% { transform: rotate(60deg); transform-origin: top left; animation-timing-function: ease-in-out; }	
+	80% { transform: rotate(60deg) translateY(0); opacity: 1; transform-origin: top left; animation-timing-function: ease-in-out; }	
+	100% { transform: translateY(700px); opacity: 0; }

@@ -1,0 +1,56 @@
+$WidgetBackgroundColor ?= #FFF
+
+.widget
+	bg $WidgetBackgroundColor
+	border 1px solid #000000
+	border-radius 3px
+
+.widgetBox
+	position absolute
+	z-index 5
+
+.widget.widgetBox
+	box-shadow 1px 1px 4px
+	margin 4px
+
+.widget > *
+	overflow auto
+
+.widget.withArrow
+	margin-top 35px
+	position relative
+
+.widget.withArrow:after, .widget.withArrow:before
+	absolute bottom 100%
+	border solid transparent
+	content " "
+	height 0
+	width 0
+	pointer-events none
+
+.widget.withArrow:after
+	border-color rgba(255, 255, 255, 0)
+	border-bottom-color #fff
+	border-width 30px
+	left 50%
+	margin-left -30px
+
+.widget.withArrow:before
+	border-color rgba(0, 0, 0, 0)
+	border-bottom-color #000
+	border-width 36px
+	left 50%
+	margin-left -36px
+
+.widget.withArrowBottom
+	margin-top 4px
+	margin-bottom 35px
+
+.widget.withArrowBottom:after, .widget.withArrowBottom:before
+	top 100%
+	border-bottom-color transparent
+
+.widget.withArrowBottom:after
+	border-top-color #fff
+.widget.withArrowBottom:before
+	border-top-color #000
