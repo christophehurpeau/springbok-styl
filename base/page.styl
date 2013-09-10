@@ -24,12 +24,16 @@ $FixedBackground ?= false
 $FixedColor ?= false
 $FixedBorder ?= false
 $FixedLinkColor ?= false
-$FixedVariableMargin ?= false
+$VariableColor ?= false
 $VariableBackground ?= false
 $VariableBorder ?= false
 $VariableShadow ?= false
+$VariablePadding ?= false
+$FixedVariableMargin ?= false
+$FixedVariableColor ?= false
 $FixedVariableBackground ?= #FFF
 $FixedVariableBorder ?= false
+$FixedVariableBorderRadius ?= false
 $VariableContentBackground ?= false
 $VariableAutoContentPadding ?= true
 
@@ -73,7 +77,7 @@ body
 
 input,textarea
 	font:normal 1.05em Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif;
-
+	
 @includeCore 'base/interactions';
 
 #container pre,#container code,kbd,samp
@@ -126,7 +130,7 @@ header, table tr.head th, table thead th, .flashMessage
 	color $HeaderColor if $HeaderColor
 
 if $HeaderColor
-	header a a,header a:hover{color:$HeaderColor;}
+	header a,header a:hover{color:$HeaderColor;}
 
 header div
 	font-size 0.95em
@@ -270,7 +274,6 @@ if $PAGE_FIXED
 	border $VariableBorder if $VariableBorder
 	boxShadow $VariableShadow if $VariableShadow
 	padding $VariablePadding if $VariablePadding
-	
 
 .content,#page .content
 	padding 5px 10px
@@ -317,13 +320,6 @@ if $PAGE_FIXED
 .h400{height:400px}
 .h200{height:200px}
 .h300{height:300px}
-
-@if $PAGE_FIXED{
-	.ml160{margin-left:170px}
-	.ml200{margin-left:210px}
-	.mr160{margin-right:170px}
-	.mr200{margin-right:210px}
-}
 
 .mr10{margin-right:10px !important}/* DO NOT put this in #page */
 .mr20{margin-right:20px !important}
