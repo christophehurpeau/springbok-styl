@@ -207,6 +207,8 @@ if $PAGE_FIXED
 	::-webkit-scrollbar-track{ background:#777; border-radius:2px; -webkit-box-shadow:0 0 1px #000, inset 0 0 1px #CCC; }
 	::-webkit-scrollbar-thumb{ background:#000; border-radius:2px; -webkit-box-shadow:inset 0 0 2px #666; }
 */
+$PageTopPosition ?= $HeaderHeight if $HeaderHeight
+$PageTopPosition ?= 37px
 
 #page
 	/*float:left;*/
@@ -219,7 +221,7 @@ if $PAGE_FIXED
 	bg $PageBackground
 	
 	if $PAGE_FIXED
-		absolute top 37px bottom 16px left right
+		absolute top $PageTopPosition bottom 16px left right
 		overflow visible /* nouveau contexte => pour les clear à l'interieur */
 		overflow-x hidden
 		/* http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-styling-scrollbars-to-match-your-ui-design/ */
@@ -254,8 +256,10 @@ if $PAGE_FIXED
 
 .col.fixed
 	if $PAGE_FIXED
-		position:fixed; _position:absolute; z-index:6;
-		top:$HeaderHeight; bottom:14px; _top:0; _bottom:0;
+		position:fixed; _position:absolute;
+		z-index 6
+		top $PageTopPosition
+		bottom:14px; _top:0; _bottom:0;
 		&.right{left:auto; *float:left;/* for ie7 */}
 		&.left{right:auto; *float:right;/* for ie7 */}
 	bg $FixedBackground

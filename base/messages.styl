@@ -20,11 +20,11 @@
 	box-shadow:0 0 15px 2px #999;
 
 
-.boxWarning{
+body .boxWarning{
 	background:#FFDDAA;
 	color:#ad2d00;
 }
-.boxError{
+body .boxError{ /*body : for widgets*/
 	background:#efafaf;
 	color:#8A0000;
 }
@@ -43,7 +43,7 @@
 }
 .message.error{
 	border:1px solid #B80000;
-	@extend .boxError;
+	@extend body .boxError;
 }
 
 .message.success{
@@ -54,7 +54,7 @@
 
 .mWarning{
 	@extend .message;
-	@extend .boxWarning;
+	@extend body .boxWarning;
 	border:1px solid #E07308;
 }
 
