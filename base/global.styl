@@ -1,6 +1,6 @@
 $SEP_BORDER ?= 1px solid #BBB
 
-@includeCore 'base/reset';
+@require 'base/reset.styl';
 
 .sepTop,.sepT,ul.cSepTop li
 	border-top:$SEP_BORDER
@@ -73,7 +73,7 @@ html body .hidden{display:none}
 .clearfix:after,header:after,.header:after,.fixed:after,.variable:after,ul.mosaic:after,nav.top:after,nav.top ul:after{
 	content: "";
 	display: table;
-	clear: both; 
+	clear: both;
 }
 if $IE_COMPATIBILITY
 	.clearfix,header,.header,.fixed,.variable,ul.mosaic,nav.top,nav.top ul
@@ -166,6 +166,6 @@ $BCOLOR_INVALID ?= #CEBBBB
 .invalid{ background:$BCOLOR_INVALID; }
 
 /* interactions */
-@includeCore 'base/interactions';
-@includeCore 'base/types';
-@includeCore 'base/animations';
+@require 'base/interactions.styl';
+@require 'base/types.styl';
+@require 'base/animations.styl';

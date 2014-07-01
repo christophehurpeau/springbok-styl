@@ -1,4 +1,4 @@
-@includeCore 'base/html5';
+@require './html5.styl';
 
 
 $PAGE_100 ?= true
@@ -51,96 +51,96 @@ $BreadcrumbsColor ?= false
 
 
 html
-	/* Prevents iOS text size adjust after orientation change, without disabling user zoom. */
-	text-size-adjust 100%
+    /* Prevents iOS text size adjust after orientation change, without disabling user zoom. */
+    text-size-adjust 100%
 
 
 
 html,body
-	if $PAGE_100
-		height:100%
-	else
-		min-height:100%
+    if $PAGE_100
+        height 100%
+    else
+        min-height 100%
 
 body
-	/*62.5%*/
-	font normal 80% Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif
-	bg $BodyBackground
-	color $BodyColor
-	margin 0
-	padding 0
-	/* @include webkitAntialiased; */
-	// http://stackoverflow.com/questions/11589985/webkit-text-aliasing-gets-weird-during-css3-animations
-	-webkit-backface-visibility: hidden;
+    /*62.5%*/
+    font normal 80% Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif
+    bg $BodyBackground
+    color $BodyColor
+    margin 0
+    padding 0
+    /* @include webkitAntialiased; */
+    // http://stackoverflow.com/questions/11589985/webkit-text-aliasing-gets-weird-during-css3-animations
+    -webkit-backface-visibility: hidden;
 
 
 
 input,textarea
-	font:normal 1.05em Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif;
-	
-@includeCore 'base/interactions';
+    font normal 1.05em Ubuntu,'Droid Sans','Segoe UI',Corbel,'Gill Sans','DejaVu Sans','Bitstream Vera Sans',Helvetica,Verdana,sans-serif
+
+@require './interactions.styl';
 
 #container pre,#container code,kbd,samp
-	font:normal 1.07em 'Ubuntu Mono','UbuntuBeta Mono',Monaco,Menlo,"Courier New",monospace;
+    font:normal 1.07em 'Ubuntu Mono','UbuntuBeta Mono',Monaco,Menlo,"Courier New",monospace;
 
 body #container
-	if $PAGE_100
-		position:relative
-		height:auto
-		min-height:100%
-	
-	if $ContainerWidth
-		width fif($ContainerWidth==true,998px,$ContainerWidth)
-		margin 0 auto
-	else
-		min-width 900px /* half a 1920px screen */
-	bg $ContainerBackground
-	boxShadow $ContainerShadow if $ContainerShadow
+    if $PAGE_100
+        position:relative
+        height:auto
+        min-height:100%
+
+    if $ContainerWidth
+        width fif($ContainerWidth==true,998px,$ContainerWidth)
+        margin 0 auto
+    else
+        min-width 900px /* half a 1920px screen */
+    bg $ContainerBackground
+    boxShadow $ContainerShadow if $ContainerShadow
 
 if $ContainerWidth is true
-	@media min-width:1200px
-		body #container
-			width 1180px
+    @media (min-width: 1200px)
+        body #container
+            width 1180px
 
 html > body #container
-	height auto unless $PAGE_FIXED
+    height auto unless $PAGE_FIXED
 
 //header, div.header
 header
-	boxShadow($HeaderShadow,5px) if $HeaderShadow
-	borderRadiusBottom(5px) if $HeaderBorderRadius
-	padding $HeaderPadding if $HeaderPadding
-	border $HeaderBorder if $HeaderBorder
-	height $HeaderHeight if $HeaderHeight
-	display block
-	/*width:98%;
-	margin:0 auto; padding:1px 0;*/
-	
-	/*width:100%;*/
-	z-index 11
-	
-	if $PAGE_FIXED
-		fixed top left right
-		/*_position:absolute
-		top:0;left:0;right:0;*/
+    boxShadow($HeaderShadow,5px) if $HeaderShadow
+    borderRadiusBottom(5px) if $HeaderBorderRadius
+    padding $HeaderPadding if $HeaderPadding
+    border $HeaderBorder if $HeaderBorder
+    height $HeaderHeight if $HeaderHeight
+    display block
+    /*width:98%;
+    margin:0 auto; padding:1px 0;*/
+
+    /*width:100%;*/
+    z-index 11
+
+    if $PAGE_FIXED
+        fixed top left right
+        /*_position:absolute
+        top:0;left:0;right:0;*/
 
 // header, div.header, table tr.head th, table thead th, .flashMessage
 header, table tr.head th, table thead th, .flashMessage
-	bg $HeaderBackground
-	color $HeaderColor if $HeaderColor
+    bg $HeaderBackground
+    color $HeaderColor if $HeaderColor
 
 if $HeaderColor
-	header a,header a:hover{color:$HeaderColor;}
+    header a,header a:hover{color:$HeaderColor;}
 
 header div
-	font-size 0.95em
+    font-size 0.95em
 header div.right
-	float right
-	text-align right
-	padding 2px 3px
+    float right
+    text-align right
+    padding 2px 3px
 
 header div.right a
-	font-size 8.5pt
+    font-size 8.5pt
 
 $FooterBackground ?= false
 $FooterColor ?= false
@@ -149,149 +149,149 @@ $FooterPadding ?= false
 $FooterPaddingBottom ?= 4px
 $FooterLinkColor ?= false
 footer, div.footer
-	bg $FooterBackground
-	color $FooterColor if $FooterColor
-	font-size $FooterFontSize
-	if $FooterPadding
-		padding $FooterPadding
-	else if $FooterPaddingBottom
-		padding-bottom $FooterPaddingBottom
-	text-align center
-	width 100%
-	clear both
+    bg $FooterBackground
+    color $FooterColor if $FooterColor
+    font-size $FooterFontSize
+    if $FooterPadding
+        padding $FooterPadding
+    else if $FooterPaddingBottom
+        padding-bottom $FooterPaddingBottom
+    text-align center
+    width 100%
+    clear both
 
 if $PAGE_100
-	footer
-		absolute bottom
+    footer
+        absolute bottom
 
 footer a
-	color $FooterLinkColor !important if $FooterLinkColor
+    color $FooterLinkColor !important if $FooterLinkColor
 
 footer a, div.footer a, #breadcrumbs a, h1 a, h2 a
-	text-decoration:none
+    text-decoration:none
 
 #breadcrumbs
-	$BreadcrumbsPadding ?= -1
-	$BreadcrumbsMargin ?= 0 0 5px
-	
-	if $BreadcrumbsBackground
-		$BreadcrumbsMargin = 3px 3px 5px
-		$BreadcrumbsPadding = 2px 3px 3px if $BreadcrumbsPadding == -1
-		bg $BreadcrumbsBackground
-	unless $BreadcrumbsInVariable
-		$BreadcrumbsShadow = $FixedVariableShadow if $FixedVariableShadow and $BreadcrumbsShadow == -1
-		border-radius $FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
-		unless $BreadcrumbsBackground
-			if $FixedVariableBackground
-				margin:3px 3px 5px
-				$BreadcrumbsPadding = 2px 3px 3px if $BreadcrumbsPadding == -1
-				bg $FixedVariableBackground
-	
-	boxShadow($BreadcrumbsShadow,3px) if $BreadcrumbsShadow and $BreadcrumbsShadow != -1
-	margin $BreadcrumbsMargin if $BreadcrumbsMargin
-	font-size $BreadcrumbsFontSize if $BreadcrumbsFontSize
-	padding $BreadcrumbsPadding if $BreadcrumbsPadding
-	if $BreadcrumbsColor
-		color $BreadcrumbsColor;
-		a
-			color $BreadcrumbsColor !important
+    $BreadcrumbsPadding ?= -1
+    $BreadcrumbsMargin ?= 0 0 5px
+
+    if $BreadcrumbsBackground
+        $BreadcrumbsMargin = 3px 3px 5px
+        $BreadcrumbsPadding = 2px 3px 3px if $BreadcrumbsPadding == -1
+        bg $BreadcrumbsBackground
+    unless $BreadcrumbsInVariable
+        $BreadcrumbsShadow = $FixedVariableShadow if $FixedVariableShadow and $BreadcrumbsShadow == -1
+        border-radius $FixedVariableBorder_RADIUS if $FixedVariableBorder_RADIUS
+        unless $BreadcrumbsBackground
+            if $FixedVariableBackground
+                margin:3px 3px 5px
+                $BreadcrumbsPadding = 2px 3px 3px if $BreadcrumbsPadding == -1
+                bg $FixedVariableBackground
+
+    boxShadow($BreadcrumbsShadow,3px) if $BreadcrumbsShadow and $BreadcrumbsShadow != -1
+    margin $BreadcrumbsMargin if $BreadcrumbsMargin
+    font-size $BreadcrumbsFontSize if $BreadcrumbsFontSize
+    padding $BreadcrumbsPadding if $BreadcrumbsPadding
+    if $BreadcrumbsColor
+        color $BreadcrumbsColor;
+        a
+            color $BreadcrumbsColor !important
 
 
 #breadcrumbs span.last
-	cursor default
-	color $InteractionCurrentColor unless $BreadcrumbsColor
+    cursor default
+    color $InteractionCurrentColor unless $BreadcrumbsColor
 
 /*
 if $PAGE_FIXED
-	::-webkit-scrollbar{ width:6px; height:8px ; }
-	::-webkit-scrollbar-track{ background:#777; border-radius:2px; -webkit-box-shadow:0 0 1px #000, inset 0 0 1px #CCC; }
-	::-webkit-scrollbar-thumb{ background:#000; border-radius:2px; -webkit-box-shadow:inset 0 0 2px #666; }
+    ::-webkit-scrollbar{ width:6px; height:8px ; }
+    ::-webkit-scrollbar-track{ background:#777; border-radius:2px; -webkit-box-shadow:0 0 1px #000, inset 0 0 1px #CCC; }
+    ::-webkit-scrollbar-thumb{ background:#000; border-radius:2px; -webkit-box-shadow:inset 0 0 2px #666; }
 */
 $PageTopPosition ?= $HeaderHeight if $HeaderHeight
 $PageTopPosition ?= 37px
 
 #page
-	/*float:left;*/
-	/*overflow: visible; /* nouveau contexte => pour les clear à l'interieur */
-	/*overflow-x: hidden;*/
-	if $PageWidth
-		width $PageWidth
-		margin 0 auto
-	
-	bg $PageBackground
-	
-	if $PAGE_FIXED
-		absolute top $PageTopPosition bottom 16px left right
-		overflow visible /* nouveau contexte => pour les clear à l'interieur */
-		overflow-x hidden
-		/* http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-styling-scrollbars-to-match-your-ui-design/ */
-		/* http://css-tricks.com/custom-scrollbars-in-webkit/ */
-		scrollbar-face-color #111 /* IE */
-	else
-		position relative;
-		$PageMarginTop ?= 8px
-		margin-top $PageMarginTop if $PageMarginTop
-		padding-bottom 20px if $PagePaddingBottom
+    /*float:left;*/
+    /*overflow: visible; /* nouveau contexte => pour les clear à l'interieur */
+    /*overflow-x: hidden;*/
+    if $PageWidth
+        width $PageWidth
+        margin 0 auto
+
+    bg $PageBackground
+
+    if $PAGE_FIXED
+        absolute top $PageTopPosition bottom 16px left right
+        overflow visible /* nouveau contexte => pour les clear à l'interieur */
+        overflow-x hidden
+        /* http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-styling-scrollbars-to-match-your-ui-design/ */
+        /* http://css-tricks.com/custom-scrollbars-in-webkit/ */
+        scrollbar-face-color #111 /* IE */
+    else
+        position relative;
+        $PageMarginTop ?= 8px
+        margin-top $PageMarginTop if $PageMarginTop
+        padding-bottom 20px if $PagePaddingBottom
 
 .col.fixed, .col.variable
-	overflow auto;
-	if $PAGE_FIXED
-		absolute left 2px right 2px top bottom
-		margin 3px if $FixedVariableMargin
-	else
-		overflow-x hidden /* nouveau contexte => pour les clear à l'interieur */
-		position relative;
-		margin 0 10px if $FixedVariableMargin
-	
-	/* IE <= 7 */
-	*float left
-	
-	z-index 1
-	
-	boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
-	border-radius $FixedVariableBorderRadius if $FixedVariableBorderRadius
-	bg $FixedVariableBackground
-	color $FixedVariableColor if $FixedVariableColor
-	border $FixedVariableBorder if $FixedVariableBorder
+    overflow auto;
+    if $PAGE_FIXED
+        absolute left 2px right 2px top bottom
+        margin 3px if $FixedVariableMargin
+    else
+        overflow-x hidden /* nouveau contexte => pour les clear à l'interieur */
+        position relative;
+        margin 0 10px if $FixedVariableMargin
+
+    /* IE <= 7 */
+    *float left
+
+    z-index 1
+
+    boxShadow($FixedVariableShadow,3px) if $FixedVariableShadow
+    border-radius $FixedVariableBorderRadius if $FixedVariableBorderRadius
+    bg $FixedVariableBackground
+    color $FixedVariableColor if $FixedVariableColor
+    border $FixedVariableBorder if $FixedVariableBorder
 
 .col.fixed
-	if $PAGE_FIXED
-		position:fixed; _position:absolute;
-		z-index 6
-		top $PageTopPosition
-		bottom:14px; _top:0; _bottom:0;
-		&.right{left:auto; *float:left;/* for ie7 */}
-		&.left{right:auto; *float:right;/* for ie7 */}
-	bg $FixedBackground
-	color $FixedColor if $FixedColor
-	border $FixedBorder if $FixedBorder
-	
-	h2
-		text-align center
-	
-	a, a:hover
-		color $FixedLinkColor if $FixedLinkColor
+    if $PAGE_FIXED
+        position:fixed; _position:absolute;
+        z-index 6
+        top $PageTopPosition
+        bottom:14px; _top:0; _bottom:0;
+        &.right{left:auto; *float:left;/* for ie7 */}
+        &.left{right:auto; *float:right;/* for ie7 */}
+    bg $FixedBackground
+    color $FixedColor if $FixedColor
+    border $FixedBorder if $FixedBorder
+
+    h2
+        text-align center
+
+    a, a:hover
+        color $FixedLinkColor if $FixedLinkColor
 
 .col.variable
-	bg $VariableBackground
-	color $VariableColor if $VariableColor
-	border $VariableBorder if $VariableBorder
-	boxShadow $VariableShadow if $VariableShadow
-	padding $VariablePadding if $VariablePadding
+    bg $VariableBackground
+    color $VariableColor if $VariableColor
+    border $VariableBorder if $VariableBorder
+    boxShadow $VariableShadow if $VariableShadow
+    padding $VariablePadding if $VariablePadding
 
 .content,#page .content
-	padding 5px 10px
+    padding 5px 10px
 
 #page
-	div.overflow
-		margin 0
-		padding 0
-		width 100%
-		overflow auto
-		clear both
-	
-	div.newContext
-		position relative
+    div.overflow
+        margin 0
+        padding 0
+        width 100%
+        overflow auto
+        clear both
+
+    div.newContext
+        position relative
 
 /* Width & Height */
 
@@ -340,5 +340,5 @@ $PageTopPosition ?= 37px
 .mb6{margin-bottom:6px !important}
 
 
-@includeCore 'base/messages';
+@require './messages.styl';
 

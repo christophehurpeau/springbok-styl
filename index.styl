@@ -67,9 +67,9 @@ boxShadow($color,$blur=false,$hOffset=0,$vOffset=0,$spread=false,$inset=false)
 		*/
 		/*@if $hOffset==0 and $vOffset==1px{
 			// http://www.marcuspope.com/blog/Less-CSS-Mixins-for-cross-browser-styles
-			filter: 
-				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=180,strength=4), 
-				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=225,strength=4), 
+			filter:
+				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=180,strength=4),
+				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=225,strength=4),
 				progid:DXImageTransform.Microsoft.Shadow(color='#{$color}',direction=270,strength=5);
 		}*/
 
@@ -105,7 +105,7 @@ marginpadding($margin,$padding = true)
 	padding fif($padding is true,$padding,$margin)
 
 
-@includeCore 'functions/backgrounds';
-@includeCore 'functions/sprites';
-@includeCore 'functions/compat';
-@includeCore 'functions/positions';
+@require 'functions/backgrounds.styl';
+@require 'functions/sprites.styl';
+@require 'functions/compat.styl';
+@require 'functions/positions.styl';
