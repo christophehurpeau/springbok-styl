@@ -1,0 +1,13 @@
+{
+  "name": "springbok-styl",
+  "description": "Springbok framework for Stylus",
+  "keywords": [
+    "springbokjs",
+    "stylus"
+  ],
+  "version": "1.0.0",
+  "homepage": "https://github.com/christophehurpeau/springbok-styl",
+  "license": "MIT",
+  "author": "Christophe Hurpeau <christophe@hurpeau.com> (http://christophe.hurpeau.com/)",
+  "repository": "git://github.com/christophehurpeau/springbok-styl.git"
+}
