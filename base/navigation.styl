@@ -114,13 +114,13 @@ header nav li a,div.header nav li a,ul.pager a
 header nav.top li.separator
 	/* padding:3px 6px 4px + margin:1px 2px; + border */
 	$__padding = 3px 6px 4px;
-	
+
 	if $HeaderMenuLinkMargin
 		$__padding = $__padding[0] + $HeaderMenuLinkMargin[0] $__padding[1] + fif($HeaderMenuLinkMargin[1],$HeaderMenuLinkMargin[1],$HeaderMenuLinkMargin[0]) $__padding[2] + $HeaderMenuLinkMargin[0];
-	
+
 	if $HeaderMenuLinkBorder
 		$__padding = $__padding[0] + 1px $__padding[1] $__padding[2] + 1px;
-	
+
 	padding $__padding;
 
 

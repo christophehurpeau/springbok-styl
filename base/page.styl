@@ -10,6 +10,7 @@ $HeaderBorderRadius ?= false
 $HeaderPadding ?= false
 $HeaderBorder ?= false
 $HeaderHeight ?= false
+$HeaderShadowBlur ?= 5px
 
 $ContainerWidth ?= true
 $ContainerBackground ?= false
@@ -107,7 +108,7 @@ html > body #container
 
 //header, div.header
 header
-    boxShadow($HeaderShadow,5px) if $HeaderShadow
+    boxShadow($HeaderShadow, $HeaderShadowBlur) if $HeaderShadow
     borderRadiusBottom(5px) if $HeaderBorderRadius
     padding $HeaderPadding if $HeaderPadding
     border $HeaderBorder if $HeaderBorder
@@ -168,7 +169,7 @@ footer a
     color $FooterLinkColor !important if $FooterLinkColor
 
 footer a, div.footer a, #breadcrumbs a, h1 a, h2 a
-    text-decoration:none
+    text-decoration none
 
 #breadcrumbs
     $BreadcrumbsPadding ?= -1

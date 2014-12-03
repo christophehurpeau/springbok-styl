@@ -3,21 +3,30 @@ $H1Background ?= false
 $H1_TEXT_SHADOW ?= false
 
 h1,h2,h3,h4,h5,h6{clear:both; margin-top:0;position:relative;}
-h1{
-	font-size:1.6em
-	margin-bottom:15px
-	color:$H1Color if $H1Color 
-	padding:8px 5px if $H1Background
+h1
+	font-size 1.6em
+	margin-bottom 15px
+	color $H1Color if $H1Color
+	padding 8px 5px if $H1Background
 	bg $H1Background if $H1Background
-	padding:0 unless $H1Background
-	text-shadow:$H1_TEXT_SHADOW if $H1_TEXT_SHADOW
-}
-h2{font-size:1.4em;margin:4px 0 12px;}
-h3{font-size:1.3em;margin-bottom:10px;}
-h4{font-size:1.18em;margin-bottom:8px;}
-h5{font-size:1.1em;margin-bottom:5px;}
-h6{font-size:1.05em;margin-bottom:5px;}
+	padding 0 unless $H1Background
+	text-shadow $H1_TEXT_SHADOW if $H1_TEXT_SHADOW
 
+h2
+    font-size 1.4em
+    margin 4px 0 12px
+h3
+    font-size 1.3em
+    margin-bottom 10px
+h4
+    font-size 1.18em
+    margin-bottom 8px
+h5
+    font-size 1.1em
+    margin-bottom 5px
+h6
+    font-size 1.05em
+    margin-bottom 5px
 
 /* http://necolas.github.com/normalize.css/2.0.1/normalize.css */
 /* Addresses style set to `bolder` in Firefox 3+, Safari 4/5, and Chrome. */
