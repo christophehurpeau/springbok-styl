@@ -79,24 +79,32 @@ if $IE_COMPATIBILITY
     .clearfix,header,.header,.fixed,.variable,ul.mosaic,nav.top,nav.top ul
         zoom:1
 
-li a img{vertical-align:bottom}
-table img,img.icon,span.icon,.vaMiddle,.row .vaMiddle{vertical-align:middle}
-span.img,span.icon{display:block;display:inline-block}
+li a img
+    vertical-align bottom
+
+table img, .vaMiddle, .row .vaMiddle
+    vertical-align middle
+
+span.img
+    display inline-block
 
 .iconWrap
-    position:relative
-    overflow:hidden
-    zoom:1 if $IE_COMPATIBILITY
+    position relative
+    overflow hidden
+    zoom 1 if $IE_COMPATIBILITY
 
-.iconWrap .icon{
-    position:absolute;
-    top:0;left:0;
-}
-.iconWrap div{
-    display: table-cell;
-    vertical-align: middle;
-}
-a.aicon{display:inline-block;text-decoration:none;}
+.iconWrap .icon
+    position absolute
+    top 0
+    left 0
+
+.iconWrap div
+    display table-cell;
+    vertical-align middle
+
+a.aicon
+    display inline-block
+    text-decoration none
 
 ul.mosaic
     float left

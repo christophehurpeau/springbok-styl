@@ -1,19 +1,30 @@
-coreIcon16($name,iconName=$name)
-	.icon.{$name}
-		sicons16(iconName)
-
-coreIcon32($name,iconName=$name)
-	.icon.{$name}
-		sicons32(iconName)
+@require 'base/icon.styl';
 
 
-.iconWrap div{height:30px;padding-left:28px}
-.icon,.icon32{width:16px;height:16px;margin:2px 3px 2px 0;@extend .hiddenText;font-size:0;}/* display inline-block dans global.scss */
-.icon26{width:26px;height:26px;}
-.icon32{width:32px;height:32px;}
-li .icon,.button .icon,li .icon32,.button .icon32{margin:0 2px 0 0}
+.iconWrap div
+    height 30px
+    padding-left 28px
+.icon
+    margin 0 3px 0 0
+    display inline-block
+    text-rendering auto
+    -webkit-font-smoothing antialiased
+    -moz-osx-font-smoothing grayscale
+    line-height 1
+    vertical-align middle
+    position relative
+    bottom 1px
 
-.bIcon .icon{margin:0;}
-.button.bIcon{padding:4px}
+li .icon,.button .icon
+    margin 0 2px 0 0
 
-.ajaxLoader{background:url('../ajax-loader.gif');width:16px;height:16px}
+.bIcon .icon
+    margin 0
+
+.button.bIcon
+    padding 4px
+
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
