@@ -14,6 +14,7 @@ br.clear{display:block;line-height:0;font-size:0;height:0}
 .cursorWait,body.cursorWait *{cursor:wait !important}
 .bold{font-weight:bold}
 .italic{font-style:italic}
+
 .alignRight{text-align:right}
 .alignLeft{text-align:left}
 .alignJustify{text-align:justify}
@@ -148,14 +149,8 @@ ul.icons{
     margin:5px 0;
     padding:0 0 0 16px;
 }
-ul.compact ul,ul.icons ul{margin:1px 0}
-
-ul.overflow-ellipsis li{
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
-    display:block;
-}
+ul.compact ul, ul.icons ul
+    margin 1px 0
 
 ul.separated > li
     border-top $SEP_BORDER
@@ -176,6 +171,12 @@ ul.simpleDouble ul
 .cMt10 > :first-child,.cMt15 > :first-child{margin-top:0}
 
 .cSepTop > :first-child{margin-top:0;padding-top:0;border-top:0;}
+
+ul.overflow-ellipsis li, div.overflow-ellipsis
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    display block
 
 
 $BCOLOR_VALID ?= #D3DBD3
