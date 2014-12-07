@@ -1,0 +1,33 @@
+@import 'variables/buttons.styl';
+@require './index.styl';
+
+
+.touch-button
+    bg $ButtonBackground
+    border-radius $ButtonRadius
+    box-shadow $ButtonBoxShadow if $ButtonBoxShadow
+    border $ButtonBorder
+    color $ButtonColor
+    text-shadow $ButtonTextShadow
+    padding 2px 8px
+    cursor pointer
+    transition all .4s
+    box-sizing border-box
+    text-decoration none
+    display inline-block
+
+input.submit, button, .button, .touch-button
+    padding 6px 8px !important
+    min-width 32px
+    text-align center
+
+.touch-button:hover
+    bg $ButtonHoverBackground
+    border $ButtonHoverBorder if $ButtonHoverBorder
+    color $ButtonHoverColor if $ButtonHoverColor
+
+body .touch-button:focus
+    bg $ButtonFocusBackground
+    color $ButtonFocusColor
+    outline 0
+    text-shadow $ButtonFocusTextShadow if $ButtonFocusTextShadow
