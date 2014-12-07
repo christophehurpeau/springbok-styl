@@ -12,69 +12,75 @@ $ButtonColor ?= #EEE
 $ButtonBorder ?= 1px solid #111
 $ButtonHoverColor ?= #FFF
 $ButtonHoverBorder ?= 1px solid #333333
+$ButtonRadius ?= 3px
 
 if $BasicButtons
-	$ButtonBackground = #FFF #F3F3F3
-	$ButtonHoverBackground = #F3F3F3 #E5E5E5
-	$ButtonFocusBackground = #E5E5E5 #FFF
-	$ButtonColor = #222
-	$ButtonBorder = 1px solid #CCC
-	$ButtonHoverColor = #000
-	$ButtonHoverBorder = 1px solid #AAA
-	$ButtonBoxShadow = false
+    $ButtonBackground = #FFF #F3F3F3
+    $ButtonHoverBackground = #F3F3F3 #E5E5E5
+    $ButtonFocusBackground = #E5E5E5 #FFF
+    $ButtonColor = #222
+    $ButtonBorder = 1px solid #CCC
+    $ButtonHoverColor = #000
+    $ButtonHoverBorder = 1px solid #AAA
+    $ButtonBoxShadow = false
 
 
 
 if $_BUTTON_OVERRIDE
-	html{
-		input.submit,button,.button{
-			bg $ButtonBackground
-			border $ButtonBorder
-			color $ButtonColor
-		}
-		input.submit:hover,button:hover,.button:hover{
-			bg $ButtonHoverBackground
-			border $ButtonHoverBorder if $ButtonHoverBorder
-		}
-		body input.submit:focus,body button:focus,body .button:focus{
-			bg $ButtonFocusBackground
-		}
-	}
+    html
+        input.submit button .button
+            bg $ButtonBackground
+            border $ButtonBorder
+            color $ButtonColor
+
+        input.submit:hover, button:hover, .button:hover
+            bg $ButtonHoverBackground
+            border $ButtonHoverBorder if $ButtonHoverBorder
+
+        body input.submit:focus, body button:focus, body .button:focus
+            bg $ButtonFocusBackground
 else
-	input.submit,button,.button{
-		bg $ButtonBackground
-		border-radius 3px
-		box-shadow $ButtonBoxShadow if $ButtonBoxShadow
-		border $ButtonBorder
-		color $ButtonColor
-		text-shadow $ButtonTextShadow
-		padding 2px 8px
-		cursor pointer
-		transition all .4s
-		box-sizing border-box
-		text-decoration none
-	}
-	input.submit:hover,button:hover,.button:hover{
-		bg $ButtonHoverBackground
-		border $ButtonHoverBorder if $ButtonHoverBorder
-		color $ButtonHoverColor if $ButtonHoverColor
-	}
-	body input.submit:focus,body button:focus,body .button:focus{
-		bg $ButtonFocusBackground
-		color $ButtonFocusColor
-		outline 0
-		text-shadow $ButtonFocusTextShadow if $ButtonFocusTextShadow
-	}
-	a.button,a.button:hover{text-decoration:none;display:inline-block;}
-	input.submit.bblock,button.bblock,.button.bblock,a.button.bblock,a.button.bblock:hover{display:block;}
-	
-	button::-moz-focus-inner,input[type="submit"]::-moz-focus-inner,input[type="button"]::-moz-focus-inner{border: 0}
-	button.big, .button.big{
-		padding:5px 16px;
-	}
+    input.submit, button, .button
+        bg $ButtonBackground
+        border-radius $ButtonRadius
+        box-shadow $ButtonBoxShadow if $ButtonBoxShadow
+        border $ButtonBorder
+        color $ButtonColor
+        text-shadow $ButtonTextShadow
+        padding 2px 8px
+        cursor pointer
+        transition all .4s
+        box-sizing border-box
+        text-decoration none
+
+    input.submit:hover, button:hover, .button:hover
+        bg $ButtonHoverBackground
+        border $ButtonHoverBorder if $ButtonHoverBorder
+        color $ButtonHoverColor if $ButtonHoverColor
+
+    body input.submit:focus, body button:focus,body .button:focus
+        bg $ButtonFocusBackground
+        color $ButtonFocusColor
+        outline 0
+        text-shadow $ButtonFocusTextShadow if $ButtonFocusTextShadow
+
+    a.button
+        display inline-block
+
+    a.button, a.button:hover
+       text-decoration none
+
+    input.submit.bblock, button.bblock, .button.bblock, a.button.bblock
+       display block
+
+    button::-moz-focus-inner, input[type="submit"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner
+       border 0
+
+    button.big .button.big
+        padding 5px 16px
 
 /* IE */
 /*input.submit,button{
-	position:relative;
-	z-index: 0;
+    position:relative;
+    z-index: 0;
 }*/

@@ -1,0 +1,15 @@
+$ContainerWidth ?= true
+
+.container
+    width fif($ContainerWidth==true, 998px, $ContainerWidth)
+    margin-left auto
+    margin-right auto
+
+if $ContainerWidth is true
+    @media (min-width: 1200px)
+        .container
+            width 1180px
+
+
+header
+    margin-bottom 20px

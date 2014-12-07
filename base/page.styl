@@ -4,15 +4,14 @@
 $PAGE_100 ?= true
 $PAGE_FIXED ?= false
 
-$HeaderBackground ?= false
-$HeaderColor ?= false
-$HeaderBorderRadius ?= false
-$HeaderPadding ?= false
-$HeaderBorder ?= false
-$HeaderHeight ?= false
-$HeaderShadowBlur ?= 5px
+$PageHeaderBackground ?= false
+$PageHeaderColor ?= false
+$PageHeaderBorderRadius ?= false
+$PageHeaderPadding ?= false
+$PageHeaderBorder ?= false
+$PageHeaderHeight ?= false
+$PageHeaderShadowBlur ?= 5px
 
-$ContainerWidth ?= true
 $ContainerBackground ?= false
 $ContainerShadow ?= false
 
@@ -90,30 +89,21 @@ body #container
         height:auto
         min-height:100%
 
-    if $ContainerWidth
-        width fif($ContainerWidth==true,998px,$ContainerWidth)
-        margin 0 auto
-    else
-        min-width 900px /* half a 1920px screen */
+    min-width 900px /* half a 1920px screen */
     bg $ContainerBackground
     boxShadow $ContainerShadow if $ContainerShadow
-
-if $ContainerWidth is true
-    @media (min-width: 1200px)
-        body #container
-            width 1180px
 
 html > body #container
     height auto unless $PAGE_FIXED
 
-//header, div.header
-header
-    boxShadow($HeaderShadow, $HeaderShadowBlur) if $HeaderShadow
-    borderRadiusBottom(5px) if $HeaderBorderRadius
-    padding $HeaderPadding if $HeaderPadding
-    border $HeaderBorder if $HeaderBorder
-    height $HeaderHeight if $HeaderHeight
+header.page-header
+    boxShadow($PageHeaderShadow, $PageHeaderShadowBlur) if $PageHeaderShadow
+    borderRadiusBottom(5px) if $PageHeaderBorderRadius
+    padding $PageHeaderPadding if $PageHeaderPadding
+    border $PageHeaderBorder if $PageHeaderBorder
+    height $PageHeaderHeight if $PageHeaderHeight
     display block
+    margin-bottom 0
     /*width:98%;
     margin:0 auto; padding:1px 0;*/
 
@@ -125,22 +115,22 @@ header
         /*_position:absolute
         top:0;left:0;right:0;*/
 
-// header, div.header, table tr.head th, table thead th, .flashMessage
-header, table tr.head th, table thead th, .flashMessage
-    bg $HeaderBackground
-    color $HeaderColor if $HeaderColor
+header.page-header, table tr.head th, table thead th, .flashMessage
+    bg $PageHeaderBackground
+    color $PageHeaderColor if $PageHeaderColor
 
-if $HeaderColor
-    header a,header a:hover{color:$HeaderColor;}
+if $PageHeaderColor
+    header.page-header a, header.page-header a:hover
+        color $PageHeaderColor
 
-header div
+header.page-header div
     font-size 0.95em
-header div.right
+header.page-header div.right
     float right
     text-align right
     padding 2px 3px
 
-header div.right a
+header.page-header div.right a
     font-size 8.5pt
 
 $FooterBackground ?= false
@@ -149,7 +139,7 @@ $FooterFontSize ?= 0.75em
 $FooterPadding ?= false
 $FooterPaddingBottom ?= 4px
 $FooterLinkColor ?= false
-footer, div.footer
+footer
     bg $FooterBackground
     color $FooterColor if $FooterColor
     font-size $FooterFontSize
@@ -208,7 +198,7 @@ if $PAGE_FIXED
     ::-webkit-scrollbar-track{ background:#777; border-radius:2px; -webkit-box-shadow:0 0 1px #000, inset 0 0 1px #CCC; }
     ::-webkit-scrollbar-thumb{ background:#000; border-radius:2px; -webkit-box-shadow:inset 0 0 2px #666; }
 */
-$PageTopPosition ?= $HeaderHeight if $HeaderHeight
+$PageTopPosition ?= $PageHeaderHeight if $PageHeaderHeight
 $PageTopPosition ?= 37px
 
 #page

@@ -7,48 +7,55 @@ $InteractionHoverBackgroundColor ?= $InteractionHoverColor
 $InteractionCurrentBackgroundColor ?= $InteractionCurrentColor
 
 a
-	color:$InteractionDefaultColor
-	text-shadow:$InteractionDefaultTextShadow if $InteractionDefaultTextShadow
+    color:$InteractionDefaultColor
+    text-shadow:$InteractionDefaultTextShadow if $InteractionDefaultTextShadow
 
 if $InteractionCurrentColor == $InteractionHoverColor
-	a:hover,a.current
-		color:$InteractionCurrentColor
+    a:hover,a.current
+        color:$InteractionCurrentColor
 else
-	a.current{color:$InteractionCurrentColor}
-	a:hover{color:$InteractionHoverColor}
+    a.current{color:$InteractionCurrentColor}
+    a:hover{color:$InteractionHoverColor}
+
+
+[contenteditable]:hover
+    outline 1px dotted $InteractionHoverColor
+
+[contenteditable]:focus
+    outline 1px solid $InteractionCurrentColor
 
 
 $__moreSelector='';
 
 ul.clickable.linksList{
-	> li{
-		padding:0;
-		&[data-url]{ padding:12px 8px; }
-		> a{ display:block; padding:12px 8px; }
-	}
+    > li{
+        padding:0;
+        &[data-url]{ padding:12px 8px; }
+        > a{ display:block; padding:12px 8px; }
+    }
 }
 
 
 div.clickable,ul.clickable li{
-	background:$InteractionDefaultBackgroundColor;
-	color:findBestFgColor($InteractionDefaultBackgroundColor);
-	cursor:pointer;
+    background:$InteractionDefaultBackgroundColor;
+    color:findBestFgColor($InteractionDefaultBackgroundColor);
+    cursor:pointer;
 }
 div.clickable a,ul.clickable li a
-	color:findBestFgColor($InteractionDefaultBackgroundColor)
-	text-decoration:none
+    color:findBestFgColor($InteractionDefaultBackgroundColor)
+    text-decoration:none
 
 if $InteractionHoverBackgroundColor
-	div.clickable:hover,ul.clickable li:hover
-		background:$InteractionHoverBackgroundColor
-		color:findBestFgColor($InteractionHoverBackgroundColor)
-	div.clickable:hover a,ul.clickable li:hover a
-		color:findBestFgColor($InteractionHoverBackgroundColor)
+    div.clickable:hover,ul.clickable li:hover
+        background:$InteractionHoverBackgroundColor
+        color:findBestFgColor($InteractionHoverBackgroundColor)
+    div.clickable:hover a,ul.clickable li:hover a
+        color:findBestFgColor($InteractionHoverBackgroundColor)
 
 
 if $InteractionCurrentBackgroundColor and (!$InteractionHoverBackgroundColor or $InteractionHoverBackgroundColor != $InteractionCurrentBackgroundColor)
-	ul.clickable li.current
-		background:$InteractionCurrentBackgroundColor
-		color:findBestFgColor($InteractionCurrentBackgroundColor)
-	ul.clickable li.current a
-		color:findBestFgColor($InteractionCurrentBackgroundColor)
+    ul.clickable li.current
+        background:$InteractionCurrentBackgroundColor
+        color:findBestFgColor($InteractionCurrentBackgroundColor)
+    ul.clickable li.current a
+        color:findBestFgColor($InteractionCurrentBackgroundColor)
