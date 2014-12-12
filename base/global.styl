@@ -5,24 +5,50 @@ $SEP_BORDER ?= 1px solid #BBB
 .sepTop,.sepT,ul.cSepTop li
     border-top:$SEP_BORDER
 
-.center{text-align:center}
-.centered{margin:0 auto}
-.clear{clear:both}
-.noclear{clear:none}
-br.clear{display:block;line-height:0;font-size:0;height:0}
-.pointer{cursor:pointer}
-.cursorWait,body.cursorWait *{cursor:wait !important}
-.bold{font-weight:bold}
-.italic{font-style:italic}
+.text-center
+    text-align center
 
-.alignRight{text-align:right}
-.alignLeft{text-align:left}
-.alignJustify{text-align:justify}
-.faR{float:right;text-align:right}
-.context{ overflow:auto; overflow-x:hidden; position:relative }
-.nowrap,.w1{white-space:nowrap}
-html body .hidden{display:none}
-.dblock{display:block}
+.centered
+    margin 0 auto
+.clear
+    clear both
+
+.noclear
+    clear none
+.pointer
+    cursor pointer
+
+.cursorWait, body.cursorWait *
+    cursor wait !important
+
+.text-bold
+    font-weight bold
+
+.text-italic
+    font-style italic
+
+.text-align-right
+    text-align right
+
+.text-align-left
+    text-align left
+
+.text-align-justify
+    text-align justify
+
+.context
+    overflow auto
+    overflow-x hidden
+    position relative
+
+.nowrap, .w1
+    white-space nowrap
+
+html body .hidden
+    display none
+
+.display-block
+    display block
 
 .hiddenText
     text-indent:-99999px;
@@ -32,17 +58,26 @@ html body .hidden{display:none}
         *line-height:0
         *overflow:hidden
 
-.floatR{float:right}
-.floatL{float:left}
+.pull-right
+    float right
 
-.row{ @extend .clear; display:table; table-layout:fixed; width:100%; }
+.pull-left
+    float left
+
+.row
+    @extend .clear
+    display table
+    table-layout fixed
+    width 100%
+
 .row .col
-    display:table-cell
-    vertical-align:top /* Opera */
+    display table-cell
+    vertical-align top /* Opera */
     if $IE_COMPATIBILITY
-        *float:left /* IE <7 */
+        *float left /* IE <7 */
 
-.line.gut > * + *{margin-left:1em}
+.line.gut > * + *
+    margin-left 1em
 
 
 
@@ -127,28 +162,30 @@ ul.mosaic
         border 0
 
 
-ul.inline,ul.nobullets,ul.simpleDouble,ul.clickable{
-    list-style:none;
-    margin:0;padding:0;
-}
-ul.inline{
-    @extend .dblock;
-}
-ul.inline li{ padding:2px 3px; display:inline; display:inline-block; }
+ul.inline, ul.nobullets, ul.simpleDouble, ul.clickable
+    list-style none
+    margin 0
+    padding 0
 
-ul.spaced li{
-    padding:3px 0;
-}
+ul.inline
+    @extend .display-block;
 
-ul.compact{
-    margin:5px 0;
-    padding:0 0 0 20px;
-}
-ul.icons{
-    list-style:none;
-    margin:5px 0;
-    padding:0 0 0 16px;
-}
+ul.inline li
+    padding 2px 3px
+    display inline-block
+
+ul.spaced li
+    padding 3px 0
+
+ul.compact
+    margin 5px 0
+    padding 0 0 0 20px
+
+ul.icons
+    list-style none
+    margin 5px 0
+    padding 0 0 0 16px
+
 ul.compact ul, ul.icons ul
     margin 1px 0
 
@@ -182,8 +219,11 @@ ul.overflow-ellipsis li, div.overflow-ellipsis
 $BCOLOR_VALID ?= #D3DBD3
 $BCOLOR_INVALID ?= #CEBBBB
 
-.valid{ background:$BCOLOR_VALID; }
-.invalid{ background:$BCOLOR_INVALID; }
+.valid
+    background $BCOLOR_VALID
+
+.invalid
+    background $BCOLOR_INVALID
 
 /* interactions */
 @require 'base/interactions.styl';
