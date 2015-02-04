@@ -149,14 +149,14 @@ ul.mosaic
     list-style none
     margin 0
     padding 0
-    li
+    > li
         float left
         display block
         margin 0 5px 3px 2px
-    li > a
+    > li > a
         display block
         text-decoration none
-    li img
+    > li img
         display block
         margin 0 auto 0
         border 0
@@ -170,11 +170,11 @@ ul.inline, ul.nobullets, ul.simpleDouble, ul.clickable
 ul.inline
     @extend .display-block;
 
-ul.inline li
+ul.inline > li
     padding 2px 3px
     display inline-block
 
-ul.spaced li
+ul.spaced > li, ul.clickable.linksList.spaced > li
     padding 3px 0
 
 ul.compact

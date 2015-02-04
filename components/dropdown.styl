@@ -1,0 +1,37 @@
+$zindex-dropdown ?= 1
+$dropdown-bg ?= #fff
+
+.dropdown
+    position relative
+
+
+// Prevent the focus on the dropdown toggle when closing dropdowns
+.dropdown-toggle:focus
+    outline 0
+
+.dropdown-toggle::after
+    content '▼'
+    padding-left 2px
+    text-decoration none
+
+
+.dropdown-menu
+    absolute top 100% left 0 right 0
+    z-index $zindex-dropdown
+    display none
+    opacity 0
+    float left
+    background-color $dropdown-bg
+    transition opacity 0.5s linear
+
+// Open state for the dropdown
+.open
+    // Show the menu
+    > .dropdown-menu
+        display block
+        opacity 1
+
+    // Remove the outline when :focus is triggered
+    > a
+        outline 0
+

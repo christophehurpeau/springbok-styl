@@ -56,7 +56,7 @@ html
 
 
 
-html,body
+html, body
     if $PAGE_100
         height 100%
     else
@@ -125,12 +125,11 @@ if $PageHeaderColor
 
 header.page-header div
     font-size 0.95em
-header.page-header div.right
-    float right
+header.page-header div.pull-right
     text-align right
     padding 2px 3px
 
-header.page-header div.right a
+header.page-header div.pull-right a
     font-size 8.5pt
 
 $FooterBackground ?= false
@@ -139,7 +138,7 @@ $FooterFontSize ?= 0.75em
 $FooterPadding ?= false
 $FooterPaddingBottom ?= 4px
 $FooterLinkColor ?= false
-footer
+footer.page-footer
     bg $FooterBackground
     color $FooterColor if $FooterColor
     font-size $FooterFontSize
@@ -152,7 +151,7 @@ footer
     clear both
 
 if $PAGE_100
-    footer
+    footer.page-footer
         absolute bottom
 
 footer a

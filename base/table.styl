@@ -1,58 +1,66 @@
-table{
-	width:100%; padding:0;
-	border-spacing:0;
-}
-.legend table{width:auto}
-table th{
-	padding:1px 3px;
-}
-table td{
-	padding:1px 2px;
-	border-collapse:collapse;
-}
-table.spaced td{padding:2px 5px; }
-table tr.alternate{
-	background:rgba(0,0,0,0.07);
-}
+table
+    width 100%
+    padding 0
+    border-spacing 0
 
-table tr.alternate.valid{ background:darken($BCOLOR_VALID,4%); }
-table tr.alternate.invalid{ background:darken($BCOLOR_INVALID,4%); }
+.legend table
+    width auto
 
-table.table{
-	clear:both;
-}
+table th
+    padding 1px 3px
 
-table.table tr > * + *{
-	border-left:1px solid #DDD;
-	border-left:1px solid rgba(0,0,0,0.15);
-}
+table td
+    padding 1px 2px
+    border-collapse collapse
+
+table.spaced td
+    padding 2px 5px
+
+table tr.alternate
+    background rgba(0, 0, 0, 0.07)
+
+
+table tr.alternate.valid
+    background darken($BCOLOR_VALID, 4%)
+
+table tr.alternate.invalid
+    background darken($BCOLOR_INVALID, 4%)
+
+table.table
+    clear both
+
+table.table tr > * + *
+    border-left 1px solid #DDD
+    border-left 1px solid rgba(0, 0, 0, 0.15)
+
 /*table.table tr:hover{
-	background:INTERACTION_HOVER_COLOR;
+    background:INTERACTION_HOVER_COLOR;
 }*/
 
 table.layout td
-	vertical-align top
+    vertical-align top
 
 table th .order
-	height 8px
-	width 30px
-	margin 2px auto
-	position relative
+    height 8px
+    width 30px
+    margin 2px auto
+    position relative
 
-@require './arrow.styl';
 
-table .order .arrowUp
-	arrowUp 6px,5px,fif($HeaderColor,$HeaderColor,#000)
-	position absolute
-	left:0; bottom:0;
+/* TODO untested */
 
-table .order .arrowUp:hover
-	arrowUpOverride $InteractionHoverColor;
+table .order .arrowUp::after
+    content '▲'
+    color $HeaderColor
+    absolute left 0 bottom 0
 
-table .order .arrowDown
-	arrowDown 6px,5px,fif($HeaderColor,$HeaderColor,#000)
-	position absolute
-	right:0; bottom:0;
+table .order .arrowUp::after:hover
+    color $InteractionHoverColor
 
-table .order .arrowDown:hover
-	arrowDownOverride $InteractionHoverColor
+table .order .arrowDown::after
+    content '▼'
+    color $HeaderColor
+    absolute right 0 bottom 0
+
+table .order .arrowDown::after:hover
+    color $InteractionHoverColor

@@ -34,129 +34,137 @@ $HeaderMenuLinkCurrentOrHoverBorderBottom ?= false
 $HeaderMenuLinkDisplayBlock ?= false
 
 /* see reset.scss for nav{} */
-nav ul
-	list-style none
-	marginpadding 0
+nav
+    ul
+        list-style none
+        margin 0
+        padding 0
 
-nav li
-	margin 1px
-	padding 0
+    li
+        margin 1px
+        padding 0
 
-nav li a
-	text-decoration none
-	text-shadow none
-nav li a:focus
-	outline none
-nav li a:hover
-	text-decoration underline
-	text-shadow none
+    li a
+        text-decoration none
+        text-shadow none
 
-$HeaderNavTopFloat ?= true
+    li a:focus
+        outline none
+
+    li a:hover
+        text-decoration underline
+        text-shadow none
+
+
+$HeaderNavTopFloat ?= false
 if $HeaderNavTopFloat
-	header nav.top,header nav.top ul
-		float left
+    header nav.top, header nav.top ul
+        float left
 
-nav.top li
-	display inline
-	display inline-block
+$HeaderMenuPaddingTB ?= 3px
 
-$MenuPaddingTB 3px
-nav.top li a,nav.top li.separator
-	margin 0
-	padding $MenuPaddingTB 6px
-nav.top li a
-	if $HeaderMenuLinkDisplayBlock
-		display block
-	else
-		display inline-block
+nav.top
+    li
+        display inline-block
+
+    li a, li.separator
+        margin 0
+        padding $HeaderMenuPaddingTB 6px
+
+    li a
+        if $HeaderMenuLinkDisplayBlock
+            display block
+        else
+            display inline-block
 
 /*menu.right li a, menu.left li a{padding:5px;}*/
-nav.right li,nav.left li
-	margin:2px 0
+nav.right li, nav.left li
+    margin:2px 0
 
 nav.left ul ul
-	margin-left 8px
-	padding-left 1px
-	border-left 1px dotted #BBB
+    margin-left 8px
+    padding-left 1px
+    border-left 1px dotted #BBB
 
 
-header nav,div.header nav
-	font-size $HeaderMenuFontsize if $HeaderMenuFontsize
-	margin $HeaderMenuMargin if $HeaderMenuMargin
-	bg $HeaderMenuBackground
-	color $HeaderMenuColor if $HeaderMenuColor
+header nav
+    display inline-block
+    font-size $HeaderMenuFontsize if $HeaderMenuFontsize
+    margin $HeaderMenuMargin if $HeaderMenuMargin
+    bg $HeaderMenuBackground
+    color $HeaderMenuColor if $HeaderMenuColor
 
 
 // the compiler automaticly remove empty
-header nav,div.header nav,ul.pager a,table.table tr.head
-	boxShadow $HeaderMenuShadow if $HeaderMenuShadow
-	borderRadiusBottom $HeaderMenuBorderRadius if $HeaderMenuBorderRadius;
-	border $HeaderMenuBorder
-	bg $HeaderMenuBackground
-	color $HeaderMenuColor if $HeaderMenuColor
-	text-transform uppercase if $HeaderMenuUppercase
+header nav, ul.pager a, table.table tr.head
+    boxShadow $HeaderMenuShadow if $HeaderMenuShadow
+    borderRadiusBottom $HeaderMenuBorderRadius if $HeaderMenuBorderRadius;
+    border $HeaderMenuBorder
+    bg $HeaderMenuBackground
+    color $HeaderMenuColor if $HeaderMenuColor
+    text-transform uppercase if $HeaderMenuUppercase
 
-header nav li a,div.header nav li a,ul.pager a
-	/*background-color: rgba(0,0,0,0.3);*/
-	border $HeaderMenuLinkBorder
-	border-bottom $HeaderMenuLinkBorderBottom if $HeaderMenuLinkBorderBottom
-	bg $HeaderMenuLinkBackground
-	color $HeaderMenuLinkColor if $HeaderMenuLinkColor
-	border-radius $HeaderMenuLinkBorderRadius if $HeaderMenuLinkBorderRadius
-	margin $HeaderMenuLinkMargin if $HeaderMenuLinkMargin
-	/*text-shadow:0 0 1px #EFEFEF;*/
-	if $HeaderMenuLinkShadow
-		text-shadow: -1px 0 1px $HeaderMenuLinkShadow,0 1px 1px $HeaderMenuLinkShadow,1px 0 1px $HeaderMenuLinkShadow,0 -1px 1px $HeaderMenuLinkShadow
-	text-shadow $HeaderMenuLinkTextShadow if $HeaderMenuLinkTextShadow
-	font-weight bold if $HeaderMenuLinkBold
-	text-align $HeaderMenuLinkAlign if $HeaderMenuLinkAlign
+header nav li a, ul.pager a
+    /*background-color: rgba(0,0,0,0.3);*/
+    border $HeaderMenuLinkBorder
+    border-bottom $HeaderMenuLinkBorderBottom if $HeaderMenuLinkBorderBottom
+    bg $HeaderMenuLinkBackground
+    color $HeaderMenuLinkColor if $HeaderMenuLinkColor
+    border-radius $HeaderMenuLinkBorderRadius if $HeaderMenuLinkBorderRadius
+    margin $HeaderMenuLinkMargin if $HeaderMenuLinkMargin
+    /*text-shadow:0 0 1px #EFEFEF;*/
+    if $HeaderMenuLinkShadow
+        text-shadow -1px 0 1px $HeaderMenuLinkShadow,0 1px 1px $HeaderMenuLinkShadow,1px 0 1px $HeaderMenuLinkShadow,0 -1px 1px $HeaderMenuLinkShadow
+    text-shadow $HeaderMenuLinkTextShadow if $HeaderMenuLinkTextShadow
+    font-weight bold if $HeaderMenuLinkBold
+    text-align $HeaderMenuLinkAlign if $HeaderMenuLinkAlign
 
 header nav.top li.separator
-	/* padding:3px 6px 4px + margin:1px 2px; + border */
-	$__padding = 3px 6px 4px;
+    /* padding:3px 6px 4px + margin:1px 2px; + border */
+    $__padding = 3px 6px 4px;
 
-	if $HeaderMenuLinkMargin
-		$__padding = $__padding[0] + $HeaderMenuLinkMargin[0] $__padding[1] + fif($HeaderMenuLinkMargin[1],$HeaderMenuLinkMargin[1],$HeaderMenuLinkMargin[0]) $__padding[2] + $HeaderMenuLinkMargin[0];
+    if $HeaderMenuLinkMargin
+        $__padding = $__padding[0] + $HeaderMenuLinkMargin[0] $__padding[1] + fif($HeaderMenuLinkMargin[1],$HeaderMenuLinkMargin[1],$HeaderMenuLinkMargin[0]) $__padding[2] + $HeaderMenuLinkMargin[0];
 
-	if $HeaderMenuLinkBorder
-		$__padding = $__padding[0] + 1px $__padding[1] $__padding[2] + 1px;
+    if $HeaderMenuLinkBorder
+        $__padding = $__padding[0] + 1px $__padding[1] $__padding[2] + 1px;
 
-	padding $__padding;
+    padding $__padding;
 
 
 header nav li a.current,header nav li a:hover,
 div.header nav li a.current,div.header nav li a:hover,
 ul.pager .selected a,ul.pager .page a:hover
-	bg $HeaderMenuLinkCurrentOrHoverBackground
-	if $HeaderMenuLinkCurrentOrHoverShadow
-		text-shadow: -1px 0 1px $HeaderMenuLinkCurrentOrHoverShadow,0 1px 1px $HeaderMenuLinkCurrentOrHoverShadow,1px 0 1px $HeaderMenuLinkCurrentOrHoverShadow,0 -1px 1px $HeaderMenuLinkCurrentOrHoverShadow;
-	color $HeaderMenuLinkCurrentOrHoverColor if $HeaderMenuLinkCurrentOrHoverColor
-	border-bottom $HeaderMenuLinkCurrentOrHoverBorderBottom if $HeaderMenuLinkCurrentOrHoverBorderBottom
+    bg $HeaderMenuLinkCurrentOrHoverBackground
+    if $HeaderMenuLinkCurrentOrHoverShadow
+        text-shadow -1px 0 1px $HeaderMenuLinkCurrentOrHoverShadow,0 1px 1px $HeaderMenuLinkCurrentOrHoverShadow,1px 0 1px $HeaderMenuLinkCurrentOrHoverShadow,0 -1px 1px $HeaderMenuLinkCurrentOrHoverShadow
+    color $HeaderMenuLinkCurrentOrHoverColor if $HeaderMenuLinkCurrentOrHoverColor
+    border-bottom $HeaderMenuLinkCurrentOrHoverBorderBottom if $HeaderMenuLinkCurrentOrHoverBorderBottom
 
 
 header nav li a.current,
 div.header nav li a.current,
 ul.pager .selected a
-	bg $HeaderMenuLinkCurrentBackground
-	color $HeaderMenuLinkCurrentColor if $HeaderMenuLinkCurrentColor
-	border-bottom $HeaderMenuLinkCurrentBorderBottom if $HeaderMenuLinkCurrentBorderBottom
-	text-decoration:underline if $HeaderMenuLinkCurrentTextUnderlined
+    bg $HeaderMenuLinkCurrentBackground
+    color $HeaderMenuLinkCurrentColor if $HeaderMenuLinkCurrentColor
+    border-bottom $HeaderMenuLinkCurrentBorderBottom if $HeaderMenuLinkCurrentBorderBottom
+    text-decoration:underline if $HeaderMenuLinkCurrentTextUnderlined
 
 
 header nav li a:hover,
 div.header nav li a:hover,
 ul.pager a:hover
-	text-decoration none
-	bg $HeaderMenuLinkHoverBackground
-	color $HeaderMenuLinkHoverColor if $HeaderMenuLinkHoverColor
-	if $HeaderMenuLinkHoverShadow
-		text-shadow: -1px 0 1px $HeaderMenuLinkHoverShadow,0 1px 1px $HeaderMenuLinkHoverShadow,1px 0 1px $HeaderMenuLinkHoverShadow,0 -1px 1px $HeaderMenuLinkHoverShadow;
-	border-bottom $HeaderMenuLinkHoverBorderBottom if $HeaderMenuLinkHoverBorderBottom
+    text-decoration none
+    bg $HeaderMenuLinkHoverBackground
+    color $HeaderMenuLinkHoverColor if $HeaderMenuLinkHoverColor
+    if $HeaderMenuLinkHoverShadow
+        text-shadow -1px 0 1px $HeaderMenuLinkHoverShadow,0 1px 1px $HeaderMenuLinkHoverShadow,1px 0 1px $HeaderMenuLinkHoverShadow,0 -1px 1px $HeaderMenuLinkHoverShadow
+    border-bottom $HeaderMenuLinkHoverBorderBottom if $HeaderMenuLinkHoverBorderBottom
 
 header nav li a.current:hover,
 div.header nav li a.current:hover
-	color $HeaderMenuLinkCurrentAndHoverColor if $HeaderMenuLinkCurrentAndHoverColor
-	bg $HeaderMenuLinkCurrentAndHoverBackground
+    color $HeaderMenuLinkCurrentAndHoverColor if $HeaderMenuLinkCurrentAndHoverColor
+    bg $HeaderMenuLinkCurrentAndHoverBackground
 
 
 $VariableMenuPadding ?= 0 0 0 5px
@@ -172,35 +180,35 @@ $VariableMenuWidth ?= false
 $VariableMenuAlign ?= false
 
 #page nav.top
-	padding $VariableMenuPadding
+    padding $VariableMenuPadding
 #page nav.top
-	margin-bottom 0
+    margin-bottom 0
 #page nav.top li
-	if $VariableMenuLiMargin
-		margin $VariableMenuLiMargin
-	else
-		margin-bottom 0
+    if $VariableMenuLiMargin
+        margin $VariableMenuLiMargin
+    else
+        margin-bottom 0
 if $VariableMenuColor
-	#page nav.top li a:hover
-		color $VariableMenuColor
+    #page nav.top li a:hover
+        color $VariableMenuColor
 
 #page nav.top li a
-	padding 2px 6px 3px
-	width $VariableMenuWidth if $VariableMenuWidth
-	text-align $VariableMenuAlign if $VariableMenuAlign
-	color $VariableMenuColor if $VariableMenuColor
-	border-bottom-right-radius $VariableMenuRadiusBottomRight if $VariableMenuRadiusBottomRight
-	border-top-left-radius $VariableMenuRadiusTopLeft if $VariableMenuRadiusTopLeft
-	bg $VariableMenuBackground
-	text-transform:uppercase if $VariableMenuUppercase
+    padding 2px 6px 3px
+    width $VariableMenuWidth if $VariableMenuWidth
+    text-align $VariableMenuAlign if $VariableMenuAlign
+    color $VariableMenuColor if $VariableMenuColor
+    border-bottom-right-radius $VariableMenuRadiusBottomRight if $VariableMenuRadiusBottomRight
+    border-top-left-radius $VariableMenuRadiusTopLeft if $VariableMenuRadiusTopLeft
+    bg $VariableMenuBackground
+    text-transform uppercase if $VariableMenuUppercase
 
 #page nav.top li a.current
-	position relative
-	z-index 2 /* couvre l'ombre, si existe, du div suivant */
-	bg $VariableMenuCurrentBackground
-	color $VariableMenuCurrentColor if $VariableMenuCurrentColor
+    position relative
+    z-index 2 /* couvre l'ombre, si existe, du div suivant */
+    bg $VariableMenuCurrentBackground
+    color $VariableMenuCurrentColor if $VariableMenuCurrentColor
 
 
 $FixedMenuPadding ?= 5px 10px
 #page .fixed nav
-	padding $FixedMenuPadding if $FixedMenuPadding
+    padding $FixedMenuPadding if $FixedMenuPadding
