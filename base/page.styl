@@ -85,9 +85,14 @@ input,textarea
 
 body #container
     if $PAGE_100
-        position:relative
-        height:auto
-        min-height:100%
+        position relative
+        height auto
+        min-height 100%
+
+        unless $PAGE_FIXED
+            display flex
+            flex-flow column wrap
+            align-items stretch
 
     min-width 900px /* half a 1920px screen */
     bg $ContainerBackground
@@ -149,10 +154,6 @@ footer.page-footer
     text-align center
     width 100%
     clear both
-
-if $PAGE_100
-    footer.page-footer
-        absolute bottom
 
 footer a
     color $FooterLinkColor !important if $FooterLinkColor
@@ -218,9 +219,12 @@ $PageTopPosition ?= 37px
         /* http://css-tricks.com/custom-scrollbars-in-webkit/ */
         scrollbar-face-color #111 /* IE */
     else
-        position relative;
-        $PageMarginTop ?= 8px
+        position relative
+        flex 1 if $PAGE_100
+        $PageMarginTop ?= false
         margin-top $PageMarginTop if $PageMarginTop
+        $PagePaddingTop ?= 8px
+        padding-top $PagePaddingTop if $PagePaddingTop
         padding-bottom 20px if $PagePaddingBottom
 
 .col.fixed, .col.variable
@@ -230,7 +234,6 @@ $PageTopPosition ?= 37px
         margin 3px if $FixedVariableMargin
     else
         overflow-x hidden /* nouveau contexte => pour les clear à l'interieur */
-        position relative;
         margin 0 10px if $FixedVariableMargin
 
     /* IE <= 7 */
