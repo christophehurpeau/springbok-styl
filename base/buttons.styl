@@ -54,6 +54,17 @@ else
     button.big .button.big
         padding 5px 16px
 
+    .button.button-line
+        width: 100%;
+        @media screen and (min-width: 500px)
+            width: 60%;
+
+        @media screen and (min-width: 750px)
+            width: 40%;
+            max-width: 400px;
+
+    // todo : https://developer.chrome.com/multidevice/webview/tipsandtricks
+
 /* IE */
 /*input.submit,button{
     position:relative;

@@ -29,33 +29,33 @@ else
 
 $__moreSelector='';
 
-ul.clickable.linksList
+ul.selectable.linksList
     > li
         padding 0
         > a
             display block
 
 
-div.clickable, ul.clickable li
+div.selectable, ul.selectable li
     background $InteractionDefaultBackgroundColor
     color findBestFgColor($InteractionDefaultBackgroundColor)
     cursor pointer
 
-div.clickable a, ul.clickable li a
+div.selectable a, ul.selectable li a
     color findBestFgColor($InteractionDefaultBackgroundColor)
     text-decoration none
 
 if $InteractionHoverBackgroundColor
-    div.clickable:hover, ul.clickable li:hover
+    div.selectable:hover, ul.selectable li:hover
         background $InteractionHoverBackgroundColor
         color findBestFgColor($InteractionHoverBackgroundColor)
-    div.clickable:hover a, ul.clickable li:hover a
+    div.selectable:hover a, ul.selectable li:hover a
         color findBestFgColor($InteractionHoverBackgroundColor)
 
 
 if $InteractionCurrentBackgroundColor and (!$InteractionHoverBackgroundColor or $InteractionHoverBackgroundColor != $InteractionCurrentBackgroundColor)
-    ul.clickable li.current
+    ul.selectable li.current
         background $InteractionCurrentBackgroundColor
         color findBestFgColor($InteractionCurrentBackgroundColor)
-    ul.clickable li.current a
+    ul.selectable li.current a
         color findBestFgColor($InteractionCurrentBackgroundColor)
